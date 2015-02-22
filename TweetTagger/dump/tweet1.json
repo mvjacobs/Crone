@@ -1,0 +1,87 @@
+{
+  "contributors": null,
+  "truncated": false,
+  "text": "Iran want to execute Saman Naseem just because he's a member of a kurdish opposition party   #stoptheexecutionofsamannaseem",
+  "in_reply_to_status_id": null,
+  "id": 565254855691091969,
+  "favorite_count": 0,
+  "source": "<a href=\"http://twitter.com/download/iphone\" rel=\"nofollow\">Twitter for iPhone</a>",
+  "retweeted": false,
+  "coordinates": null,
+  "entities": {
+    "symbols": [],
+    "user_mentions": [],
+    "hashtags": [
+      {
+        "indices": [
+          93,
+          123
+        ],
+        "text": "stoptheexecutionofsamannaseem"
+      }
+    ],
+    "urls": []
+  },
+  "in_reply_to_screen_name": null,
+  "in_reply_to_user_id": null,
+  "retweet_count": 1,
+  "id_str": "565254855691091969",
+  "favorited": false,
+  "user": {
+    "follow_request_sent": false,
+    "profile_use_background_image": true,
+    "profile_text_color": "333333",
+    "default_profile_image": false,
+    "id": 365758335,
+    "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme1/bg.png",
+    "verified": false,
+    "profile_location": null,
+    "profile_image_url_https": "https://pbs.twimg.com/profile_images/563865475214766080/UQGhl54u_normal.jpeg",
+    "profile_sidebar_fill_color": "DDEEF6",
+    "entities": {
+      "description": {
+        "urls": []
+      }
+    },
+    "followers_count": 498,
+    "profile_sidebar_border_color": "C0DEED",
+    "id_str": "365758335",
+    "profile_background_color": "C0DEED",
+    "listed_count": 1,
+    "is_translation_enabled": false,
+    "utc_offset": null,
+    "statuses_count": 21258,
+    "description": "Ezileni savunan ezene d\u00fc\u015fman",
+    "friends_count": 461,
+    "location": "North London Enfield ",
+    "profile_link_color": "0084B4",
+    "profile_image_url": "http://pbs.twimg.com/profile_images/563865475214766080/UQGhl54u_normal.jpeg",
+    "following": false,
+    "geo_enabled": false,
+    "profile_banner_url": "https://pbs.twimg.com/profile_banners/365758335/1422793046",
+    "profile_background_image_url": "http://abs.twimg.com/images/themes/theme1/bg.png",
+    "name": "DENIZ",
+    "lang": "en",
+    "profile_background_tile": false,
+    "favourites_count": 3914,
+    "screen_name": "DenizS__",
+    "notifications": false,
+    "url": null,
+    "created_at": "Wed Aug 31 23:46:40 +0000 2011",
+    "contributors_enabled": false,
+    "time_zone": null,
+    "protected": false,
+    "default_profile": true,
+    "is_translator": false
+  },
+  "geo": null,
+  "in_reply_to_user_id_str": null,
+  "lang": "en",
+  "created_at": "Tue Feb 10 21:03:54 +0000 2015",
+  "in_reply_to_status_id_str": null,
+  "place": null,
+  "metadata": {
+    "iso_language_code": "en",
+    "result_type": "recent"
+  }
+}
