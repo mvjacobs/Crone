@@ -203,7 +203,7 @@ def parse(self, tweets):
         # on disk.
         tweets_file = tempfile.NamedTemporaryFile()
         tweets_file.file.write(
-            '\n'.join(tweet for tweet in tweets if tweet).encode('utf-8')
+            '\n'.join(tweet for tweet in tweets if tweet).encode('utf8')
         )
         tweets_file.file.flush()
 
@@ -220,6 +220,7 @@ def parse(self, tweets):
 
                 for item in output:
                     try:
+                        item = item.decode('utf-8')
                         result = nltk.parse.DependencyGraph(tree_str=item)
                         result.root = result.nodelist[0]
                     except IndexError:

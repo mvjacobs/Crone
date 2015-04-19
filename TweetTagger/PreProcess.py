@@ -1,30 +1,26 @@
 __author__ = 'marc'
 
-from nlp import tweebo
-import os
-import json
+from nlp import TweetSetAnalysis
+from database import ActivistEvents
+import pprint
 
-import logging
-logger = logging.getLogger('Tweebo.py')
-logger.setLevel(logging.DEBUG)
-logger.addHandler(logging.StreamHandler())
+#list_of_tweets = ActivistEvents.get_tweets(100)
+#words = TweetSetAnalysis.get_real_names_unique(list_of_tweets)
+#print words
 
-with open(os.path.join(os.curdir, 'dump/tweet1.json')) as data_file:
-    tweets = json.load(data_file)
+# number of retweets
 
-text = []
-text.append(tweets["text"])
-text.append("Word I'm bout to holla at her via twitter RT @iamJay_Fresh : #trushit - im tryna fucc nicki minaj lol")
+# sentiment analysis
 
-tweeb = tweebo.Tweebo()
-parsedTweets = []
+# no wikipedia entities
 
-for x in tweebo.parse(tweeb, text):
-    parsedTweet = []
-    for node in x.nodelist:
-        parsedTweet.append(node)
-    parsedTweets.append(parsedTweet)
+# top 10000 domains
 
-f = open('myfile.json', 'w')
-f.write(json.dumps(parsedTweets))
-f.close()
+# number of twitter language words
+
+# mentions user credibility
+
+# google trending topics
+
+pp = pprint.PrettyPrinter(indent=4)
+pp.pprint(ActivistEvents.get_potential_credibility_factors(100))
