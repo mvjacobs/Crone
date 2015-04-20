@@ -1,14 +1,14 @@
 __author__ = 'marc'
 
-from nlp import TweetSetAnalysis
 from database import ActivistEvents
 import pprint
+from output import Output
 
-#list_of_tweets = ActivistEvents.get_tweets(100)
-#words = TweetSetAnalysis.get_real_names_unique(list_of_tweets)
-#print words
+# get tweets from db
+tweets = ActivistEvents.get_potential_credibility_factors(100)
 
-# number of retweets
+# filter tweets
+filtered_tweets = ActivistEvents.filter_tweets(tweets)
 
 # sentiment analysis
 
@@ -22,5 +22,9 @@ import pprint
 
 # google trending topics
 
-pp = pprint.PrettyPrinter(indent=4)
-pp.pprint(ActivistEvents.get_potential_credibility_factors(100))
+# Test print
+#pp = pprint.PrettyPrinter(indent=4)
+#pp.pprint(filtered_tweets)
+
+# Output
+Output.to_json(filtered_tweets)

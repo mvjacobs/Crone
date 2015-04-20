@@ -1,7 +1,8 @@
 __author__ = 'marc'
 
 from pymongo import MongoClient
-
+import re
+from BeautifulSoup import BeautifulSoup
 
 def get_tweets(limit):
     client = MongoClient('localhost', 27017)
@@ -17,8 +18,6 @@ def get_tweets(limit):
 def get_potential_credibility_factors(limit):
     client = MongoClient('localhost', 27017)
     db = client.activist_events
-
-    tweets = []
     cred_filter = {
         'id': 1,
         'text': 1,
@@ -38,7 +37,28 @@ def get_potential_credibility_factors(limit):
         'entities.urls.url': 1
     }
 
-    for tweet in db.whaling_events.find({}, cred_filter).limit(limit):
-        tweets.append(tweet)
+    tweets = list(db.whaling_events.find({}, cred_filter).limit(limit))
 
     return tweets
+
+
+def filter_tweets(tweets):
+    filtered_tweets = []
+    for tweet in tweets:
+        # remove html tags from source
+        tweet['source'] = remove_html(tweet['source'])
+
+        # remove retweets
+        is_retweet = re.search(r"(RT|via)((?:\b\W*@\w+)+)", tweet['text'])
+        if not is_retweet:
+            filtered_tweets.append(tweet)
+
+    return filtered_tweets
+
+
+def remove_html(html):
+    soup = BeautifulSoup(html)
+    if soup.a:
+        return soup.a.renderContents()
+    else:
+        return html

@@ -1,12 +1,9 @@
 __author__ = 'marc'
 
 import json
+from bson import json_util
 
 
 def to_json(list_of_objects, file_path='myfile.json'):
-    f = open(file_path, 'w')
-    f.write(json.dumps(list_of_objects))
-    f.close()
-
-
-#def to_database()
+    with open(file_path, 'wb') as outfile:
+        json.dump(list_of_objects, outfile, default=json_util.default)
