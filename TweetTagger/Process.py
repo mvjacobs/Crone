@@ -1,7 +1,8 @@
 __author__ = 'marc'
 
-from database import ActivistEvents
-from analysis import SentimentAnalysis, TweetSetAnalysis
+from storage import ActivistEvents
+from filtering import TweetSetFilter
+from extraction import TweetSetExtraction
 import pprint
 from output import Output
 
@@ -9,20 +10,19 @@ from output import Output
 tweets = ActivistEvents.get_potential_credibility_factors(10)
 
 # filter tweets: remove retweets and unnecessary html tags
-ActivistEvents.filter_tweets(tweets)
-
-# TODO filter tweets: filter bots
-
 # filter tweet text: remove stop words
-TweetSetAnalysis.remove_stop_words(tweets)
-
+# TODO filter tweets: filter bots
 # TODO filter tweet text: optional stemming
+TweetSetFilter.filter_tweets(tweets)
 
-# analyze tweet text: find text relations
-TweetSetAnalysis.get_word_types_and_relations(tweets)
+# extract tokens without stop words and cleaned
+TweetSetExtraction.extract_filtered_tokens(tweets)
+
+# analyze tweet text: extract text relations
+TweetSetExtraction.extract_word_types_and_relations(tweets)
 
 # add metric: sentiment analysis
-SentimentAnalysis.get_tweet_sentiment(tweets)
+TweetSetExtraction.extract_sentiment_scores(tweets)
 
 # TODO add metric: count uppercase
 
@@ -38,7 +38,7 @@ SentimentAnalysis.get_tweet_sentiment(tweets)
 
 # Test print
 pp = pprint.PrettyPrinter(indent=4)
-pp.pprint(tweets)
+pp.pprint([tweet['filtered_text'] for tweet in tweets])
 
 # Output
 #Output.to_json(filtered_tweets)

@@ -1,51 +1,35 @@
 __author__ = 'marc'
 
-from analysis import Tweebo, TokenAnalysis
 from collections import Counter
-from nltk.corpus import stopwords
-from analysis import Twokenize
+import re
+
+from analysis import TweetAnalysis
 
 
-def get_real_names(list_of_tweets):
-    parsed_tweets = get_word_types_and_relations(list_of_tweets)
+def get_proper_nouns(tweets):
+    tweet_texts = get_tweet_texts(tweets)
 
-    words = []
-    for tweet in parsed_tweets:
-        token_analysis = TokenAnalysis.TokenAnalysis(tweet)
-        words = words + token_analysis.get_names_from_tweets()
+    nouns = []
+    for tweet_text in tweet_texts:
+        nouns.append(TweetAnalysis.get_proper_nouns(tweet_text))
 
-    return words
-
-
-def get_real_names_unique(list_of_tweets):
-    return set(get_real_names(list_of_tweets))
+    return nouns
 
 
-def count_real_names(list_of_tweets):
-    names = get_real_names(list_of_tweets)
+def get_proper_nouns_unique(tweets):
+    return set(get_proper_nouns(tweets))
+
+
+def count_proper_nouns(tweets):
+    names = get_proper_nouns_unique(tweets)
     return Counter(names)
 
 
-def get_word_types_and_relations(tweets):
-    tweeb = Tweebo.Tweebo()
-
-    i = 0
-    for parsed_tweet in Tweebo.parse(tweeb, [tweet['text'] for tweet in tweets]):
-        tweets[i]['nlp'] = parsed_tweet.nodelist
-        i += 1
-    return tweets
+def get_tweet_texts(tweets):
+    return [tweet['text'] for tweet in tweets]
 
 
-def remove_stop_words(list_of_tweets):
-    for tweet in list_of_tweets:
-        tokens = Twokenize.simpleTokenize(tweet['text'])
-        tokens_filtered = [
-            token for token in tokens
-            if token not in stopwords.words('english')
-            and len(token) > 1
-            and not TokenAnalysis.is_url(token)
-        ]
 
-        tweet['filtered_text'] = tokens_filtered
-
-    return list_of_tweets
+def is_retweet(text):
+    p = re.compile(r"(RT|via)((?:\b\W*@\w+)+)")
+    return bool(re.search(p, text))
