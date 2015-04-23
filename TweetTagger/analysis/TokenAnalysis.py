@@ -1,7 +1,9 @@
 __author__ = 'marc'
 
+import re
 
-class TokenAnalysis:
+
+class RelatedNames:
     def __init__(self, list_of_tokens):
         self.tokens = list_of_tokens
         self.depth = 0
@@ -42,5 +44,9 @@ class TokenAnalysis:
         return words + words_without
 
 
-
+def is_url(text):
+    p = re.compile(ur'(?i)\b((?:[a-z][\w-]+:(?:/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)'
+                   ur'(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+'
+                   ur'(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:\'\".,<>?]))')
+    return bool(re.search(p, text))
 

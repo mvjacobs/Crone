@@ -43,17 +43,15 @@ def get_potential_credibility_factors(limit):
 
 
 def filter_tweets(tweets):
-    filtered_tweets = []
     for tweet in tweets:
         # remove html tags from source
         tweet['source'] = remove_html(tweet['source'])
 
         # remove retweets
-        is_retweet = re.search(r"(RT|via)((?:\b\W*@\w+)+)", tweet['text'])
-        if not is_retweet:
-            filtered_tweets.append(tweet)
+        if is_retweet(tweet['text']):
+            tweets.remove(tweet)
 
-    return filtered_tweets
+    return tweets
 
 
 def remove_html(html):
@@ -62,3 +60,8 @@ def remove_html(html):
         return soup.a.renderContents()
     else:
         return html
+
+
+def is_retweet(text):
+    p = re.compile(r"(RT|via)((?:\b\W*@\w+)+)")
+    return bool(re.search(p, text))
