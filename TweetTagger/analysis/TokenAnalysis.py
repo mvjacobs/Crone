@@ -23,6 +23,10 @@ def calculate_sentiment_score(token):
         return -negative
 
 
+def get_tweet_emoticon_sentiment(text):
+    return text
+
+
 def is_url(text):
     """
     https://mathiasbynens.be/demo/url-regex

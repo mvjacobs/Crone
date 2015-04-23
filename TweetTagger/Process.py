@@ -1,6 +1,6 @@
 __author__ = 'marc'
 
-from storage import ActivistEvents
+from resources import ActivistEvents
 from filtering import TweetSetFilter
 from extraction import TweetSetExtraction
 import pprint
