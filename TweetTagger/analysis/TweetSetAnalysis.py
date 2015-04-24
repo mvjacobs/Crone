@@ -29,7 +29,6 @@ def get_tweet_texts(tweets):
     return [tweet['text'] for tweet in tweets]
 
 
-
 def is_retweet(text):
-    p = re.compile(r"(RT|via)((?:\b\W*@\w+)+)")
+    p = r"(RT|via)((?:\b\W*@\w+)+)"
     return bool(re.search(p, text))

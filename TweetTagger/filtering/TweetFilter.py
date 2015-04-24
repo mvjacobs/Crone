@@ -7,7 +7,7 @@ from utils import Twokenize
 
 
 def get_filtered_tweet_text(tweet_text):
-    tokens = Twokenize.simpleTokenize(tweet_text)
+    tokens = Twokenize.tokenize(tweet_text)
     tokens_filtered = [
         token for token in tokens
         if token not in stopwords.words('english')

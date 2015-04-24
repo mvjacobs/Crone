@@ -7,13 +7,13 @@ import pprint
 from output import Output
 
 # get tweets from db
-tweets = ActivistEvents.get_potential_credibility_factors(10)
+tweets = ActivistEvents.get_potential_credibility_factors(100)
 
 # filter tweets: remove retweets and unnecessary html tags
 # filter tweet text: remove stop words
 # TODO filter tweets: filter bots
 # TODO filter tweet text: optional stemming
-TweetSetFilter.filter_tweets(tweets)
+tweets = TweetSetFilter.filter_tweets(tweets)
 
 # extract tokens without stop words and cleaned
 TweetSetExtraction.extract_filtered_tokens(tweets)
@@ -38,7 +38,7 @@ TweetSetExtraction.extract_sentiment_scores(tweets)
 
 # Test print
 pp = pprint.PrettyPrinter(indent=4)
-pp.pprint([tweet['filtered_text'] for tweet in tweets])
+pp.pprint(tweets)
 
 # Output
 #Output.to_json(filtered_tweets)

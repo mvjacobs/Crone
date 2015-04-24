@@ -40,7 +40,7 @@ def extract_word_types_and_relations(tweets):
 def extract_filtered_tokens(tweets):
     for tweet in tweets:
         tokens_filtered = TweetFilter.get_filtered_tweet_text(tweet['text'])
-        tweet['filtered_text'] = tokens_filtered
+        tweet[u'filtered_text'] = tokens_filtered
 
     return tweets
 
@@ -48,9 +48,16 @@ def extract_filtered_tokens(tweets):
 def extract_sentiment_scores(tweets):
     for tweet in tweets:
         try:
-            tweet['sentiwordnet'] = TweetAnalysis.calculate_tweet_sentiment(tweet['filtered_text'])
+            tweet[u'sentiment'] = {}
+            tweet[u'sentiment'][u'sentiwordnet'] = TweetAnalysis.calculate_tweet_sentiment(tweet['filtered_text'])
+            tweet[u'sentiment'][u'happiness'] = TweetAnalysis.calculate_tweet_happiness(tweet['filtered_text'])
+            tweet[u'sentiment'][u'sadness'] = TweetAnalysis.calculate_tweet_sadness(tweet['filtered_text'])
+            tweet[u'sentiment'][u'emoticon_sentiment'] = TweetAnalysis.get_emoticon_sentiment(tweet['text'])
         except KeyError:
-            tweet['sentiwordnet'] = 0
+            tweet[u'sentiment'][u'sentiwordnet'] = 0
+            tweet[u'sentiment'][u'happiness'] = 0
+            tweet[u'sentiment'][u'sadness'] = 0
+            tweet[u'sentiment'][u'emoticon_sentiment'] = 0
 
     return tweets
 

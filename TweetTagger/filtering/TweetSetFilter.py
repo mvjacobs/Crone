@@ -1,17 +1,19 @@
 __author__ = 'marc'
 
 from analysis import TweetSetAnalysis
-from filtering import TweetFilter, TokenFilter
+from filtering import TokenFilter
 
 
 def filter_tweets(tweets):
-    for tweet in tweets:
-        # remove retweets
-        if TweetSetAnalysis.is_retweet(tweet['text']):
-            tweets.remove(tweet)
-            continue
+    # remove retweets
+    filtered_tweets = [tweet for tweet in tweets if not TweetSetAnalysis.is_retweet(tweet['text'])]
 
-        # remove html tags from source
-        tweet['source'] = TokenFilter.remove_html(tweet['source'])
+    # remove html tags from source
+    filtered_tweets = [remove_tags_from_source(tweet) for tweet in filtered_tweets]
 
-    return tweets
+    return filtered_tweets
+
+
+def remove_tags_from_source(tweet):
+    tweet[u'source'] = TokenFilter.remove_html(tweet[u'source'])
+    return tweet
