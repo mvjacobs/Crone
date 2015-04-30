@@ -24,11 +24,12 @@ TweetSetExtraction.extract_word_types_and_relations(tweets)
 # add metric: sentiment analysis
 TweetSetExtraction.extract_sentiment_scores(tweets)
 
-# TODO add metric: count uppercase
+# add metric: count uppercase
+TweetSetExtraction.extract_count_uppercase_characters(tweets)
 
-# TODO add metric: no wikipedia entities
+# TODO add metric: n/o wikipedia entities
 
-# TODO add metric: top 10000 domains
+# TODO add metric: top 100 newser news sources
 
 # TODO add metric: number of twitter language words
 

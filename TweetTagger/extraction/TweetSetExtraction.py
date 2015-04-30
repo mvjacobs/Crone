@@ -62,6 +62,12 @@ def extract_sentiment_scores(tweets):
     return tweets
 
 
+def extract_count_uppercase_characters(tweets):
+    for tweet in tweets:
+        tweet[u'uppercase_count'] = sum(1 for c in tweet['text'] if c.isupper())
+
+    return tweets
+
 
 
 
