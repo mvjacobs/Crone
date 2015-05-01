@@ -1,6 +1,8 @@
 __author__ = 'marc'
 
 from pymongo import MongoClient
+from random import randint
+from output import Output
 import re
 
 def get_tweets(limit):
@@ -37,6 +39,19 @@ def get_potential_credibility_factors(limit):
     }
 
     tweets = list(db.whaling_events.find({}, cred_filter).limit(limit))
+
+    return tweets
+
+
+def create_random_sample(amount):
+    client = MongoClient('localhost', 27017)
+    db = client.activist_events
+
+    tweets = []
+    max_count = db.whaling_events.count()
+
+    for i in range(1, amount):
+        tweets.append(list(db.whaling_events.find().limit(-1).skip(randint(1, max_count))))
 
     return tweets
 
