@@ -2,8 +2,7 @@ __author__ = 'marc'
 
 from pymongo import MongoClient
 from random import randint
-from output import Output
-import re
+
 
 def get_tweets(limit):
     client = MongoClient('localhost', 27017)
