@@ -2,6 +2,10 @@ __author__ = 'marc'
 
 from pymongo import MongoClient
 from random import randint
+from collections import Counter
+from dateutil import parser
+import matplotlib.dates as mdates
+import matplotlib.pyplot as plt
 
 
 def get_tweets(limit):
@@ -55,6 +59,31 @@ def create_random_sample(amount):
     return tweets
 
 
+def count_documents_per_day():
+    client = MongoClient('localhost', 27017)
+    db = client.activist_events
+    docs = list(db.whaling_events_new.find({}, {'created_at': 1}))
+    tweets = [parser.parse(tweet['created_at']).date() for tweet in docs]
+    counts = sorted(Counter(tweets).items())
+
+    return counts
+
+
+def draw_histogram(freq_list):
+    x = [value[0] for value in freq_list]
+    y = [value[1] for value in freq_list]
+
+    ax = plt.subplot(111)
+    ax.xaxis.set_major_locator(mdates.MonthLocator())
+    ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y/%m/%d'))
+    ax.grid(True)
+    ax.bar(x, y, width=1)
+    ax.xaxis_date()
+
+    plt.show()
+
+
+draw_histogram(count_documents_per_day())
 
 
 
