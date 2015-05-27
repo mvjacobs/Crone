@@ -46,6 +46,36 @@ def get_potential_credibility_factors(limit):
     return tweets
 
 
+def store_evaluation_factors(source_collection, target_collection):
+    client = MongoClient('localhost', 27017)
+    db = client.activist_events
+    cred_filter = {
+        'id': 1,
+        'text': 1,
+        'favorite_count': 1,
+        'retweet_count': 1,
+        'source': 1,
+        'user.statuses_count': 1,
+        'user.friends_count': 1,
+        'user.id': 1,
+        'user.listed_count': 1,
+        'user.followers_count': 1,
+        'user.url': 1,
+        'user.description': 1,
+        'user.verified': 1,
+        'user.created_at': 1,
+    }
+
+    print 'Getting the tweets'
+    tweets = db[source_collection].find({}, cred_filter)
+
+    print 'Storing the tweets'
+    for tweet in tweets:
+        db[target_collection].insert(tweet)
+
+    print 'Storing done'
+
+
 def create_random_sample(amount):
     client = MongoClient('localhost', 27017)
     db = client.activist_events
@@ -81,9 +111,6 @@ def draw_histogram(freq_list):
     ax.xaxis_date()
 
     plt.show()
-
-
-draw_histogram(count_documents_per_day())
 
 
 
