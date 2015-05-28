@@ -19,18 +19,32 @@ def get_tweets(limit):
     return tweets
 
 
-def get_potential_credibility_factors(limit):
+def get_tweet_ids(source_collection, limit=0):
     client = MongoClient('localhost', 27017)
     db = client.activist_events
-    cred_filter = {
+    tweets = [tweet['id_str'] for tweet in db[source_collection].find().limit(limit)]
+
+    return tweets
+
+
+def get_evaluation_factors(source_collection, limit=0):
+    client = MongoClient('localhost', 27017)
+    db = client.activist_events
+    fields = {
         'id': 1,
+        'id_str': 1,
         'text': 1,
         'favorite_count': 1,
         'retweet_count': 1,
         'source': 1,
+        'possibly_sensitive': 1,
+        'user.id': 1,
         'user.statuses_count': 1,
         'user.friends_count': 1,
-        'user.id': 1,
+        'user.default_profile_image': 1,
+        'user.name': 1,
+        'user.screen_name': 1,
+        'user.favourites_count': 1,
         'user.listed_count': 1,
         'user.followers_count': 1,
         'user.url': 1,
@@ -38,42 +52,17 @@ def get_potential_credibility_factors(limit):
         'user.verified': 1,
         'user.created_at': 1,
         'entities.user_mentions.id': 1,
-        'entities.urls.url': 1
+        'entities.urls.expanded_url': 1,
+        'entities.hashtags.text': 1,
+    }
+    where = {
+        #'$or': [{'retweet_count': {'$gt': 0}}, {'favorite_count': {'$gt': 0}}],
+        'lang': 'en'
     }
 
-    tweets = list(db.whaling_events.find({}, cred_filter).limit(limit))
+    tweets = db[source_collection].find(where, fields).limit(limit)
 
-    return tweets
-
-
-def store_evaluation_factors(source_collection, target_collection):
-    client = MongoClient('localhost', 27017)
-    db = client.activist_events
-    cred_filter = {
-        'id': 1,
-        'text': 1,
-        'favorite_count': 1,
-        'retweet_count': 1,
-        'source': 1,
-        'user.statuses_count': 1,
-        'user.friends_count': 1,
-        'user.id': 1,
-        'user.listed_count': 1,
-        'user.followers_count': 1,
-        'user.url': 1,
-        'user.description': 1,
-        'user.verified': 1,
-        'user.created_at': 1,
-    }
-
-    print 'Getting the tweets'
-    tweets = db[source_collection].find({}, cred_filter)
-
-    print 'Storing the tweets'
-    for tweet in tweets:
-        db[target_collection].insert(tweet)
-
-    print 'Storing done'
+    return list(tweets)
 
 
 def create_random_sample(amount):
@@ -87,6 +76,17 @@ def create_random_sample(amount):
         tweets.append(list(db.whaling_events.find().limit(-1).skip(randint(1, max_count))))
 
     return tweets
+
+
+def store_tweets(tweets, target_collection):
+    print 'Storing the tweets'
+    client = MongoClient('localhost', 27017)
+    db = client.activist_events
+
+    for tweet in tweets:
+        db[target_collection].insert(tweet)
+
+    print 'Storing done'
 
 
 def count_documents_per_day():

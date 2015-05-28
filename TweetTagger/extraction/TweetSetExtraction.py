@@ -3,6 +3,8 @@ __author__ = 'marc'
 from analysis import TweetAnalysis, TweetSetAnalysis
 from filtering import TweetFilter
 from utils import Tweebo
+import tweepy
+import time
 
 
 def extract_proper_nouns(tweets):
@@ -67,6 +69,58 @@ def extract_count_uppercase_characters(tweets):
         tweet[u'uppercase_count'] = sum(1 for c in tweet['text'] if c.isupper())
 
     return tweets
+
+
+def update_stats(tweet_ids):
+    # Read configuration from ../config/twitter.cfg
+    lines = [line.strip() for line in open('config/twitter.cfg')]
+    consumer_key = lines[0]
+    consumer_secret = lines[1]
+    access_token = lines[2]
+    access_token_secret = lines[3]
+
+    new_tweets = []
+    maximum = len(tweet_ids)
+    start = 0
+    if maximum <= 100:
+        end = maximum
+        finish = True
+    else:
+        end = 100
+        finish = False
+
+    while True:
+        ids = [tweet_id for tweet_id in tweet_ids[start:end]]
+        auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+        auth.set_access_token(access_token, access_token_secret)
+        api = tweepy.API(auth, parser=tweepy.parsers.JSONParser())
+        search = ids
+
+        try:
+            print 'looking for tweets.. start: %s end: %s max: %s' % (start, end, maximum)
+            new_tweets = new_tweets + api.statuses_lookup(search, include_entities=True)
+            new_tweets = [
+                new_tweet for new_tweet in new_tweets
+                if (new_tweet['retweet_count'] > 0 or new_tweet['favorite_count'] > 0)
+            ]
+        except tweepy.TweepError:
+            time.sleep(60 * 15)
+            continue
+
+        if finish:
+            break
+
+        start += 100
+        if (end+100) < maximum:
+            end += 100
+        elif (end+100) == maximum:
+            end += 100
+            finish = True
+        else:
+            end += (maximum % 100)
+            finish = True
+
+    return new_tweets
 
 
 

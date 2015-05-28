@@ -30,5 +30,16 @@ def get_tweet_texts(tweets):
 
 
 def is_retweet(text):
-    p = r"(RT|via)((?:\b\W*@\w+)+)"
-    return bool(re.search(p, text))
+    f1 = bool(re.search(r"(RT|via)((?:\b\W*@\w+)+)", text))
+    f2 = bool(re.search(r"RT @", text))
+    f3 = bool(re.search(r"MT @", text))
+    f4 = bool(re.search(r"^(@\w *)+", text))
+    f5 = bool(re.search(r"^@", text))
+    f6 = bool(re.search(r"\n{3,}", text))
+    f7 = bool(re.search(r"^.@", text))
+
+    return f1 or f2 or f3 or f4 or f5 or f6 or f7
+
+
+def is_retweeted_or_liked(tweets):
+    return [tweet for tweet in tweets if (tweet['retweet_count'] > 0 or tweet['favorite_count'] > 0)]

@@ -17,3 +17,7 @@ def filter_tweets(tweets):
 def remove_tags_from_source(tweet):
     tweet[u'source'] = TokenFilter.remove_html(tweet[u'source'])
     return tweet
+
+
+def remove_tweets_without_retweets_or_likes(tweets):
+    return TweetSetAnalysis.is_retweeted_or_liked(tweets)
