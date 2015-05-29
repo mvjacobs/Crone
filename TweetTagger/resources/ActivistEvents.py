@@ -49,6 +49,35 @@ def get_cf_tweet_factors(source_collection, limit=10):
 
     return tweets
 
+# id	text	created_at	lang	user.followers_count	user.verified	user.id	hashtags1	handle1	url	type
+def get_wenjie_tweet_factors(source_collection, limit=10):
+    client = MongoClient('localhost', 27017)
+    db = client.activist_events
+    fields = {
+        'id_str': 1,
+        'text': 1,
+        'created_at': 1,
+        'lang': 1,
+        'favorite_count': 1,
+        'place': 1,
+        'in_reply_to_screen_name': 1,
+        'retweet_count': 1,
+        'user.followers_count': 1,
+        'entities.hashtags.text': 1,
+        'entities.urls.expanded_url': 1,
+        'entities.user_mentions.screen_name': 1,
+        'entities.media.type': 1
+    }
+    where = {}
+    tweets = list(db[source_collection].find(where, fields))
+
+    if limit > 0:
+        tweets = random.sample(tweets, limit)
+
+    return tweets
+
+
+
 
 def get_evaluation_factors(source_collection, limit=0):
     client = MongoClient('localhost', 27017)

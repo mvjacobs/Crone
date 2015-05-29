@@ -56,3 +56,49 @@ def create_csv_for_tweet_cf_task(tweets, filename):
             rows.append(both_tweets)
 
     create_csv_from_tweets(headers, rows, filename)
+
+def create_csv_for_wenjie_task(tweets, filename):
+    headers = [
+        'id',
+        'text',
+        'created_at',
+        'lang',
+        'favorite_count',
+        'place',
+        'in_reply_to_screen_name',
+        'retweet_count',
+        'user.followers_count',
+        'entities.hashtags',
+        'entities.urls.expanded_url',
+        'entities.user_mentions.screen_name',
+        'entities.media.type'
+    ]
+
+    rows = []
+    for key in range(0, len(tweets)):
+
+        tweet = [
+            tweets[key][u"id_str"],
+            TextHelper.remove_linebreaks_from_text(tweets[key][u"text"]),
+            tweets[key][u"created_at"],
+            tweets[key][u"lang"],
+            tweets[key][u"favorite_count"],
+            tweets[key][u"place"],
+            tweets[key][u"in_reply_to_screen_name"],
+            tweets[key][u"retweet_count"],
+            tweets[key][u"user"][u'followers_count'],
+            ' '.join(hashtag[u'text'] for hashtag in tweets[key][u'entities'][u'hashtags']),
+            ' '.join([UrlHelper.unshorten_url(url[u"expanded_url"]) for url in tweets[key][u"entities"][u'urls']]),
+            ' '.join(handler[u'screen_name'] for handler in tweets[key][u'entities'][u'user_mentions'])
+        ]
+
+        try:
+            tweet.append(' '.join(media[u'type'] for media in tweets[key][u'entities'][u'media']))
+        except KeyError:
+            tweet.append(' ')
+
+        print 'Tweet %i added' % key
+
+        rows.append(tweet)
+
+    create_csv_from_tweets(headers, rows, filename)
