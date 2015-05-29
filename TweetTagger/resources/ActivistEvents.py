@@ -6,6 +6,7 @@ from collections import Counter
 from dateutil import parser
 import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
+import random
 
 
 def get_tweets(limit):
@@ -19,10 +20,32 @@ def get_tweets(limit):
     return tweets
 
 
-def get_tweet_ids(source_collection, limit=0):
+def get_tweet_ids(source_collection, limit=10):
     client = MongoClient('localhost', 27017)
     db = client.activist_events
     tweets = [tweet['id_str'] for tweet in db[source_collection].find().limit(limit)]
+
+    return tweets
+
+
+def get_cf_tweet_factors(source_collection, limit=10):
+    client = MongoClient('localhost', 27017)
+    db = client.activist_events
+    fields = {
+        'id_str': 1,
+        'text': 1,
+        'favorite_count': 1,
+        'retweet_count': 1,
+        'source': 1,
+        'entities.user_mentions': 1,
+        'entities.hashtags': 1,
+        'entities.urls.expanded_url': 1,
+    }
+    where = {}
+    tweets = list(db[source_collection].find(where, fields))
+
+    if limit > 0:
+        tweets = random.sample(tweets, limit)
 
     return tweets
 

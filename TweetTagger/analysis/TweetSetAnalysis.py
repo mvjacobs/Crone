@@ -37,8 +37,9 @@ def is_retweet(text):
     f5 = bool(re.search(r"^@", text))
     f6 = bool(re.search(r"\n{3,}", text))
     f7 = bool(re.search(r"^.@", text))
+    f8 = bool(re.search(r"(rt|mt)", text))
 
-    return f1 or f2 or f3 or f4 or f5 or f6 or f7
+    return f1 or f2 or f3 or f4 or f5 or f6 or f7 or f8
 
 
 def is_retweeted_or_liked(tweets):
