@@ -9,7 +9,7 @@ def filter_tweets(tweets):
     filtered_tweets = [tweet for tweet in tweets if not TweetSetAnalysis.is_retweet(tweet['text'])]
 
     # remove html tags from source
-    filtered_tweets = [remove_tags_from_source(tweet) for tweet in filtered_tweets]
+    #filtered_tweets = [remove_tags_from_source(tweet) for tweet in filtered_tweets]
 
     return filtered_tweets
 

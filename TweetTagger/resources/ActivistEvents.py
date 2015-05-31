@@ -49,7 +49,7 @@ def get_cf_tweet_factors(source_collection, limit=10):
 
     return tweets
 
-# id	text	created_at	lang	user.followers_count	user.verified	user.id	hashtags1	handle1	url	type
+
 def get_wenjie_tweet_factors(source_collection, limit=10):
     client = MongoClient('localhost', 27017)
     db = client.activist_events
@@ -75,8 +75,6 @@ def get_wenjie_tweet_factors(source_collection, limit=10):
         tweets = random.sample(tweets, limit)
 
     return tweets
-
-
 
 
 def get_evaluation_factors(source_collection, limit=0):

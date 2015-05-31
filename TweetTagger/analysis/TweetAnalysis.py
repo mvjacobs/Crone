@@ -1,7 +1,7 @@
 __author__ = 'marc'
 
 import TokenAnalysis
-from utils import DavisSentimentAnalysis, Twokenize
+from utils import DaviesSentimentAnalysis, Twokenize
 
 
 class RelatedNames:
@@ -61,18 +61,18 @@ def calculate_tweet_sentiment(tokens):
 
 
 def calculate_tweet_happiness(tokens):
-    return DavisSentimentAnalysis.getHappiness(tokens)
+    return DaviesSentimentAnalysis.getHappiness(tokens)
 
 
 def calculate_tweet_sadness(tokens):
-    return DavisSentimentAnalysis.getSadness(tokens)
+    return DaviesSentimentAnalysis.getSadness(tokens)
 
 
 
 def get_emoticon_sentiment(text):
     tokens = Twokenize.tokenize(text)
-    positive_emoticons = [':)', ':-)', ':=)', ":D", ':-D', ':=D', '^_^', ';)', ';-)', ';=)']
-    negative_emoticons = [':(', ':-(', ':=(', ":'()", ';(', ';-(', ';=(']
+    positive_emoticons = [':)', ':-)', ':=)', ':D', ':-D', ':=D', '^_^', ';)', ';-)', ';=)']
+    negative_emoticons = [':(', ':-(', ':=(', ":'(", ';(', ';-(', ';=(']
 
     happies = 0
     saddies = 0
