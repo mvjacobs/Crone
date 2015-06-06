@@ -20,7 +20,7 @@ articles2 = GuardianMiner.get_articles(
 Mongo.store_articles(articles1, 'whaling_articles_nytimes')
 Mongo.store_articles(articles2, 'whaling_articles_guardian')
 
-#print len(articles2)
+#print len(articles1)
 
 #pp = pprint.PrettyPrinter(indent=4)
 
