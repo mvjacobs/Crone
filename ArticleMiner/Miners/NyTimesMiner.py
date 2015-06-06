@@ -2,10 +2,11 @@ __author__ = 'marc'
 # http://developer.nytimes.com/docs/read/article_search_api_v2
 
 from nytimesarticle import articleAPI
-import time, math
+import time, math, requests, pprint
 from time import gmtime, strftime
 
-nytimes_api_key = [line.strip() for line in open('Config/nytimes.cfg')][0]
+nytimes_api_key = [line.strip() for line in open('../Config/nytimes.cfg')][0]
+nytimes_community_api_key = [line.strip() for line in open('../Config/nytimes.cfg')][1]
 now = strftime("%Y%m%d", gmtime())
 
 
@@ -59,3 +60,19 @@ def get_hits_count(keyword, from_date, end_date):
     )
 
     return articles['response']['meta']['hits']
+
+
+def get_comments_from_url(url, page):
+    api_url = 'http://api.nytimes.com/svc/community/v3/user-content/url.json'
+    payload = {
+        'api-key': nytimes_community_api_key,
+        'url': url,
+        'offset': page
+    }
+    response = requests.get(api_url, params=payload).json()
+
+    return response['results']
+
+
+def get_comments_count_from_url(url):
+    return get_comments_from_url(url, 0)['totalCommentsFound']

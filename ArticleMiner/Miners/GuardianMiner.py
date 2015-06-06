@@ -1,9 +1,12 @@
 __author__ = 'marc'
 # http://open-platform.theguardian.com/documentation/search
 
-import requests
 from time import gmtime, strftime
+import requests
 import time
+import microdata
+import urllib
+import json
 
 guardian_api_key = [line.strip() for line in open('Config/guardian.cfg')][0]
 now = strftime("%Y-%m-%d", gmtime())
@@ -65,3 +68,16 @@ def get_total_pages(q, section, limit, from_date, to_date=now):
     response = requests.get(api_url, params=payload).json()
 
     return response['response']['pages']
+
+
+def get_comments_from_article(guardian_article_url):
+    read_url = urllib.urlopen(guardian_article_url)
+    microdata_entities = microdata.get_items(read_url)
+    entities = [json.loads(entity.json()) for entity in microdata_entities]
+    comments = [entity['properties'] for entity in entities if 'http://schema.org/Comment' in entity['type']]
+
+    return comments
+
+
+def get_comments_count_from_article(guardian_article_url):
+    return len(get_comments_from_article(guardian_article_url))
