@@ -4,40 +4,41 @@ __author__ = 'marc'
 from time import gmtime, strftime
 import requests
 import time
-import microdata
-import urllib
-import json
 
 guardian_api_key = [line.strip() for line in open('Config/guardian.cfg')][0]
 now = strftime("%Y-%m-%d", gmtime())
 
 # max page size = 200
-def get_articles(q, section, from_date, to_date=now, limit=10):
+def get_articles(q, section, from_date, to_date=now, limit=10, article_type='news'):
     articles = []
 
     if limit > 200:
         current = 200
-        total_pages = get_total_pages(q, section, 200, from_date, to_date)
-        print 'Guardian: max pages %i' % total_pages
+        total_pages = get_total_pages(q, section, 200, from_date, to_date, article_type)
 
         for page in range(1, total_pages + 1):
-            articles += _get_articles(q, section, 200, from_date, to_date, page)
-            print 'Guardian: %i articles are added.' % current
+            articles += _get_articles(q, section, 200, from_date, to_date, page, article_type)
             current += 200
             if current > limit:
                 break
             time.sleep(1)
     else:
-        articles = _get_articles(q, section, limit, from_date, to_date=now)
+        articles = _get_articles(q, section, limit, from_date, to_date=now, article_type=article_type)
 
     return articles
 
 
-def get_total_pages(q, section, limit, from_date, to_date=now):
+def get_total_pages(q, section, limit, from_date, to_date=now, article_type='news'):
+    if article_type == 'blog':
+        tag = ['blog', 'tone/blog']
+    else:
+        tag = []
+
     api_url = 'http://content.guardianapis.com/search'
     payload = {
         'q':                    q,
         'section':              section,
+        'tag':                  tag,
         'from-date':            from_date,
         'to-date':              to_date,
         'api-key':              guardian_api_key,
@@ -47,26 +48,19 @@ def get_total_pages(q, section, limit, from_date, to_date=now):
 
     return response['response']['pages']
 
+def _get_articles(q, section, limit, from_date, to_date=now, page=1, article_type='news'):
+    if article_type == 'blog':
+        tag = ['blog', 'tone/blog']
+    else:
+        tag = []
 
-def get_comments_from_article(guardian_article_url):
-    read_url = urllib.urlopen(guardian_article_url)
-    microdata_entities = microdata.get_items(read_url)
-    entities = [json.loads(entity.json()) for entity in microdata_entities]
-    comments = [entity['properties'] for entity in entities if 'http://schema.org/Comment' in entity['type']]
-
-    return comments
-
-
-def get_comments_count_from_article(guardian_article_url):
-    return len(get_comments_from_article(guardian_article_url))
-
-def _get_articles(q, section, limit, from_date, to_date=now, page=1):
     api_url = 'http://content.guardianapis.com/search'
     payload = {
         'q':                    q,
         'section':              section,
         'from-date':            from_date,
         'to-date':              to_date,
+        'tag':                  tag,
         'api-key':              guardian_api_key,
         'page-size':            limit,
         'page':                 page,
