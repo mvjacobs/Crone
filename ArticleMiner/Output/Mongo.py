@@ -51,5 +51,5 @@ def draw_histogram(freq_list):
 
     plt.show()
 
-list = count_documents_per_day('whaling_events_new', 'created_at')
-draw_histogram(list)
+# list = count_documents_per_day('whaling_events_new', 'created_at')
+# draw_histogram(list)
