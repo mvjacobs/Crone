@@ -16,17 +16,20 @@ def get_nytimes_articles(article_type, limit=0):
         coll = nytimes_news_collection
 
     credibility_fields = {
-        'headline.main':1,
-        'abstract':1,
-        'word_count':1,
-        'source':1,
-        'web_url':1,
-        'byline.person.firstname':1,
-        'byline.person.lastname':1,
-        'byline.organization':1,
-        'keywords.value':1,
-        'doc_type':1,
-        'pub_date':1
+        'headline.main': 1,
+        'abstract': 1,
+        'word_count': 1,
+        'source': 1,
+        'web_url': 1,
+        'content': 1,
+        'byline.person.firstname': 1,
+        'byline.person.lastname': 1,
+        'byline.organization': 1,
+        'keywords.value': 1,
+        'doc_type': 1,
+        'pub_date': 1,
+        'comments': 1,
+        'comment_count': 1
     }
     credibility_filter = {}
     sort = 'pub_date'
@@ -54,6 +57,7 @@ def get_guardian_articles(article_type, limit=0):
         'webTitle': 1,
         'webUrl': 1,
         'tags.webTitle': 1,
+        'body': 1,
         'blocks.body.bodyHtml': 1,
         'blocks.body.bodyTextSummary': 1,
         'blocks.body.createdBy.firstName': 1,
@@ -63,7 +67,10 @@ def get_guardian_articles(article_type, limit=0):
         'fields.byline': 1,
         'fields.wordcount': 1,
         'fields.publication': 1,
-        'fields.commentable': 1
+        'fields.commentable': 1,
+        'abstract': 1,
+        'comments': 1,
+        'comment_count': 1
     }
     credibility_filter = {}
     sort = 'webPublicationDate'

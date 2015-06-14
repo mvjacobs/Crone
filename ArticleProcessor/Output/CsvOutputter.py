@@ -1,7 +1,6 @@
 __author__ = 'marc'
 
 import unicodecsv
-from Resources import Database
 
 
 def create_csv_from_articles(headers, rows, filename):
@@ -23,10 +22,8 @@ def create_csv_for_articles(articles, filename):
         'extracted_from',
         'keywords',
         'seedwords_found',
-        'articlewords_found',
         'wikiwords_found',
         'seedwords_score',
-        'articlewords_score',
         'wikiwords_score'
     ]
 
@@ -46,10 +43,8 @@ def create_csv_for_articles(articles, filename):
             articles[key][u"extracted_from"],
             ', '.join(keyword for keyword in articles[key][u'keywords']),
             articles[key][u'seedwords_found'],
-            articles[key][u'eventwords_found'],
             articles[key][u'wikiwords_found'],
              articles[key][u'seedwords_score'],
-             articles[key][u'eventwords_score'],
              articles[key][u'wikiwords_score'],
         ]
 
@@ -59,6 +54,3 @@ def create_csv_for_articles(articles, filename):
 
     create_csv_from_articles(headers, rows, filename)
 
-
-whaling_articles = Database.get_all_documents('activist_events', 'whaling_blogs_relevancy', 'publication_date')
-create_csv_for_articles(list(whaling_articles), 'blogs.csv')

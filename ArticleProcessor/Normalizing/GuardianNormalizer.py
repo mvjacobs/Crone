@@ -12,7 +12,8 @@ def map_guardian_to_crone(documents):
         except KeyError:
             continue
 
-        crone_doc[u'body'] = document[u'fields'][u'body']
+        crone_doc[u'body'] = document[u'body']
+        crone_doc[u'abstract'] = document[u'abstract']
 
         try:
             crone_doc[u'author'] = '%s %s' % (

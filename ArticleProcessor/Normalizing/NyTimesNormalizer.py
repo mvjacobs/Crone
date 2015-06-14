@@ -32,7 +32,7 @@ def map_nytimes_to_crone(documents):
             keywords.append(keyword[u'value'])
         crone_doc[u'keywords'] = keywords
         crone_doc[u'publication_date'] = document[u'pub_date']
-        crone_doc[u'content'] = document[u'content']
+        crone_doc[u'body'] = document[u'content']
         crone_doc[u'comment_count'] = document[u'comment_count']
         crone_doc[u'comments'] = document[u'comments']
         crone_doc[u'extracted_from'] = 'http://developer.nytimes.com/docs/'
