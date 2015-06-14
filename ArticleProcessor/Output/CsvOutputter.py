@@ -3,6 +3,7 @@ __author__ = 'marc'
 import unicodecsv
 from Resources import Database
 
+
 def create_csv_from_articles(headers, rows, filename):
     csv = unicodecsv.writer(open(filename, "wb+"))
     csv.writerow(headers)

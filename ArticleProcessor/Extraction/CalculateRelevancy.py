@@ -1,11 +1,13 @@
 __author__ = 'marc'
 
-from Resources import Database
-from Output import Mongo
 from collections import Counter
-import unicodecsv
 import re
 import string
+import unicodecsv
+from Resources import Database
+from Output import Mongo
+
+
 
 def add_relevance_scores(articles, weights, field_name_counts, field_name_score):
     terms = [term['term'] for term in weights]

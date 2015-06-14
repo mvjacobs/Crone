@@ -5,20 +5,15 @@ The simplest TF-IDF library imaginable.
 
 Add your documents as two-element lists `[docname, [list_of_words_in_the_document]]` with `addDocument(docname, list_of_words)`.
 Get a list of all the `[docname, similarity_score]` pairs relative to a document by calling `similarities([list_of_words])`.
-
-See the README for a usage example.
 """
 
-import sys
-import os
-
-class tfidf:
+class TfIdf:
     def __init__(self):
         self.weighted = False
         self.documents = []
         self.corpus_dict = {}
 
-    def addDocument(self, doc_name, list_of_words):
+    def add_document(self, doc_name, list_of_words):
         # building a dictionary
         doc_dict = {}
         for w in list_of_words:
@@ -28,7 +23,7 @@ class tfidf:
         # normalizing the dictionary
         length = float(len(list_of_words))
         for k in doc_dict:
-            doc_dict[k] = doc_dict[k] / length
+            doc_dict[k] /= length
 
         # add the normalized document to the corpus
         self.documents.append([doc_name, doc_dict])
@@ -44,7 +39,7 @@ class tfidf:
         # normalizing the query
         length = float(len(list_of_words))
         for k in query_dict:
-            query_dict[k] = query_dict[k] / length
+            query_dict[k] /= length
 
         # computing the list of similarities
         sims = []
