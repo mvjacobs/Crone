@@ -1,7 +1,6 @@
 __author__ = 'marc'
 
 from pymongo import MongoClient
-import pprint
 
 events_database = 'activist_events'
 nytimes_news_collection = 'whaling_articles_nytimes'

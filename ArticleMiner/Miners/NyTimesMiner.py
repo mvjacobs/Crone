@@ -5,6 +5,7 @@ from nytimesarticle import articleAPI
 import time
 import math
 from time import gmtime, strftime
+from Content import NyTimesCommentMiner, NyTimesContentScraper
 
 nytimes_api_key = [line.strip() for line in open('Config/nytimes.cfg')][0]
 now = strftime("%Y%m%d", gmtime())
@@ -24,6 +25,12 @@ def get_articles(keyword, from_date, end_date=now, page_limit=1, article_type='n
             time.sleep(1)
     else:
         articles = _get_articles(keyword, from_date, end_date, 0, article_type)
+
+    print "NYTimes: adding body to articles."
+    articles = NyTimesContentScraper.add_body_to_articles(articles)
+
+    print "NYTimes: adding comments to articles."
+    articles = NyTimesCommentMiner.add_comments_to_articles(articles)
 
     return articles
 

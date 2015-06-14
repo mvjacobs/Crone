@@ -2,6 +2,7 @@ __author__ = 'marc'
 # http://open-platform.theguardian.com/documentation/search
 
 from time import gmtime, strftime
+from Content import GuardianContentScraper
 import requests
 import time
 
@@ -12,6 +13,7 @@ now = strftime("%Y-%m-%d", gmtime())
 def get_articles(q, section, from_date, to_date=now, limit=10, article_type='news'):
     articles = []
 
+    print "Guardian: getting articles."
     if limit > 200:
         current = 200
         total_pages = get_total_pages(q, section, 200, from_date, to_date, article_type)
@@ -24,6 +26,9 @@ def get_articles(q, section, from_date, to_date=now, limit=10, article_type='new
             time.sleep(1)
     else:
         articles = _get_articles(q, section, limit, from_date, to_date=now, article_type=article_type)
+
+    print "Guardian: adding content to articles."
+    articles = GuardianContentScraper.add_content_to_articles(articles)
 
     return articles
 
