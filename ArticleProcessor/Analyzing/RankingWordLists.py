@@ -21,7 +21,6 @@ def get_ranking_word_lists():
 
     return word_lists
 
-
 def _get_words(path_to_csv, column=0, dialect=None):
     with open(path_to_csv, 'rb') as csvfile:
         words = []

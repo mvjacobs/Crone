@@ -14,7 +14,6 @@ factory ship Nisshin Maru	location
 security patrol vessels	location
 Japan Whaling Association	actor
 International Whaling Commission	actor
-IWC	actor
 Institute of Cetacean Research	actor
 pro- and anti-whaling countries and organizations	actor
 Nations	actor
