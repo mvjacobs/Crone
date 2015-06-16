@@ -8,13 +8,15 @@ def get_ranking_word_lists():
     wiki_words = _get_words('WordLists/wikiwords.csv')
     annotated_words = _get_words('WordLists/annotatedwords.csv')
     tweets = _get_words('WordLists/tweets.csv')
+    tweets2015 = _get_words('WordLists/tweets2015.csv')
 
     word_lists = {
         'seedwords': seedwords,
         'article_topics': article_topics,
         'wiki_words': wiki_words,
         'annotated_words': annotated_words,
-        'tweets': tweets
+        'tweets': tweets,
+        'tweets2015': tweets2015
     }
 
     return word_lists

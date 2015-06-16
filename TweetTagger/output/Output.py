@@ -102,3 +102,38 @@ def create_csv_for_wenjie_task(tweets, filename):
         rows.append(tweet)
 
     create_csv_from_tweets(headers, rows, filename)
+
+
+def create_csv_for_frankiina_task(tweets, filename):
+    headers = [
+        'id',
+        'text',
+        'favorite_count',
+        'retweet_count',
+        'seedwords_score',
+        'seedwords_found',
+        'user.followers_count',
+        'entities.hashtags',
+        'entities.urls.expanded_url',
+    ]
+
+    rows = []
+    for key in range(0, len(tweets)):
+
+        tweet = [
+            tweets[key][u"id_str"],
+            TextHelper.remove_linebreaks_from_text(tweets[key][u"text"]),
+            tweets[key][u"favorite_count"],
+            tweets[key][u"retweet_count"],
+            tweets[key][u"seedwords_score"],
+            ', '.join(word for count, word in enumerate(tweets[key][u'seedwords_found'])),
+            tweets[key][u"user"][u'followers_count'],
+            ' '.join(hashtag[u'text'] for hashtag in tweets[key][u'entities'][u'hashtags']),
+            ' '.join([UrlHelper.unshorten_url(url[u"expanded_url"]) for url in tweets[key][u"entities"][u'urls']]),
+        ]
+
+        print 'Tweet %i added' % key
+
+        rows.append(tweet)
+
+    create_csv_from_tweets(headers, rows, filename)

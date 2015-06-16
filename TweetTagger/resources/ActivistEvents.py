@@ -115,17 +115,15 @@ def get_evaluation_factors(source_collection, limit=0):
     return list(tweets)
 
 
-def create_random_sample(amount):
+def create_random_sample(amount, collection):
     client = MongoClient('localhost', 27017)
     db = client.activist_events
+    coll = db[collection]
+    documents = list(coll.find())
 
-    tweets = []
-    max_count = db.whaling_events.count()
+    random_sample = [documents[i] for i in sorted(random.sample(xrange(len(documents)), amount))]
 
-    for i in range(1, amount):
-        tweets.append(list(db.whaling_events.find().limit(-1).skip(randint(1, max_count))))
-
-    return tweets
+    return random_sample
 
 
 def store_tweets(tweets, target_collection):

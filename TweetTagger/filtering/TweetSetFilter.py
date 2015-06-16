@@ -21,3 +21,15 @@ def remove_tags_from_source(tweet):
 
 def remove_tweets_without_retweets_or_likes(tweets):
     return TweetSetAnalysis.is_retweeted_or_liked(tweets)
+
+
+def remove_duplicates(tweets, field):
+    results = []
+
+    for article in tweets:
+        if not results:
+            results.append(article)
+        if article[field] not in [result[field] for result in results]:
+            results.append(article)
+
+    return results
