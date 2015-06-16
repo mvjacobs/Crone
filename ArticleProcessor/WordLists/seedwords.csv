@@ -1,37 +1,37 @@
-"commercial whaling"
-"whaling"
-"hunting"
-"moratorium"
-"quota"
-"Japan"
-"shops"
-"restaurants"
-"North Pacific Ocean"
-"Southern Ocean"
-"Antarctica"
-"factory ship"
-"factory ship Nisshin Maru"
-"security patrol vessels"
-"Japan Whaling Association"
-"International Whaling Commission"
-"IWC"
-"Institute of Cetacean Research"
-"pro- and anti-whaling countries and organizations"
-"Nations"
-"Scientists"
-"environmental organizations"
-"NGOs"
-"United Nations International Maritime Organization"
-"Antarctic Treaty System"
-"Anti-whaling governments"
-"Anti-whaling groups"
-"Greenpeace"
-"Japanese government"
-"World Wildlife Fund"
-"Ocean Alliance"
-"Sea Shepherd Conservation Society"
-"Japan Fisheries Agency"
-"harpoon cannon"
-"harpoon"
-"Markets"
-"whale meat"
+commercial whaling	event
+whaling	event
+hunting	event
+moratorium	event
+quota	event
+Japan	location
+shops	location
+restaurants	location
+North Pacific Ocean	location
+Southern Ocean	location
+Antarctica	location
+factory ship	location
+factory ship Nisshin Maru	location
+security patrol vessels	location
+Japan Whaling Association	actor
+International Whaling Commission	actor
+IWC	actor
+Institute of Cetacean Research	actor
+pro- and anti-whaling countries and organizations	actor
+Nations	actor
+Scientists	actor
+environmental organizations	actor
+NGOs	actor
+United Nations International Maritime Organization	actor
+Antarctic Treaty System	actor
+Anti-whaling governments	actor
+Anti-whaling groups	actor
+Greenpeace	actor
+Japanese government	actor
+World Wildlife Fund	actor
+Ocean Alliance	actor
+Sea Shepherd Conservation Society	actor
+Japan Fisheries Agency	actor
+harpoon cannon	other
+harpoon	other
+Markets	other
+whale meat	other
