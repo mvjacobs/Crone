@@ -2,65 +2,135 @@ __author__ = 'marc'
 
 from Analyzing import RankingWordLists
 from collections import Counter
-from operator import itemgetter
 import unicodecsv
 from dateutil import parser
+from Resources import Database
+from operator import itemgetter
 import re
 
 def create_dataset_overlap_matrix():
-    wordLists = RankingWordLists.get_ranking_word_lists()
+    word_lists = RankingWordLists.get_ranking_word_lists()
     results = {}
     blacklist = []
 
-    csv = unicodecsv.writer(open('wordsoverlap.csv', "wb+"))
+    csv = unicodecsv.writer(open('wordsoverlap_tweets.csv', "wb+"))
     csv.writerow(['set1', 'set1_size', 'set2', 'set2_size', 'matches_count', 'overlap'])
 
-    for name in wordLists:
-        spans = set([span.lower() for span in wordLists[name]])
-        otherWordLists = [wordList for wordList in wordLists if (wordList is not name) and (wordList not in blacklist)]
+    for name in word_lists:
+        spans = set([span.lower() for span in word_lists[name]])
+        otherWordLists = [wordList for wordList in word_lists if (wordList is not name) and (wordList not in blacklist)]
 
         results[name] = []
         for otherWordListName in otherWordLists:
-            otherSpans = set([otherSpan.lower() for otherSpan in wordLists[otherWordListName]])
+            otherSpans = set([otherSpan.lower() for otherSpan in word_lists[otherWordListName]])
             matches = [span for span in otherSpans if span in spans]
             results[name].append({otherWordListName: matches})
             csv.writerow([name, len(spans), otherWordListName, len(otherSpans), len(matches), ', '.join(matches)])
         blacklist.append(name)
 
 
-def create_tweet_overlap_per_entity_type(seedwords, tweets):
+def create_tweet_overlap_per_entity_type(seedwords, texts):
     exact_match = re.compile(r'\b%s\b' % '\\b|\\b'.join(seedwords), flags=re.IGNORECASE)
-    tweets_glued = ' '.join([tweet[0] for tweet in tweets])
+    tweets_glued = ' '.join([text for text in texts])
     matches = exact_match.findall(tweets_glued)
     matches = [match.lower() for match in matches]
     counted_entities = Counter(matches)
-
-    return counted_entities
+    return sorted(dict(counted_entities).items(), key=itemgetter(1), reverse=True)
 
 
 def _get_seedwords():
     with open('WordLists/seedwords.csv', 'rb') as csvfile:
         words = [word[0] for word in unicodecsv.reader(csvfile, dialect="excel-tab")]
-    return  words
+    return words
+
+
+def _get_wikiwords():
+    with open('WordLists/wikiwords.csv', 'rb') as csvfile:
+        words = [word[0] for word in unicodecsv.reader(csvfile)]
+    return words
 
 
 def _get_tweets(year=None):
     with open('Corpora/tweets.csv', 'rb') as csvfile:
-        words = [word for word in unicodecsv.reader(csvfile)]
+        tweets = list(unicodecsv.reader(csvfile))
     if year:
-        for word in words:
-            word.append(parser.parse(word[1]).year)
-        words = [word for word in words if word[2] == year]
-    return sorted(words, key=itemgetter(1), reverse=True)
+        for tweet in tweets:
+            tweet.append(parser.parse(tweet[1]).year)
+        words = [tweet[0] for tweet in tweets if tweet[2] == year]
+    else:
+        words = [tweet[0] for tweet in tweets]
+    return words
+
+
+def _get_tweets2015(year=None):
+    tweets = list(Database.get_all_documents('activist_events', 'whaling_tweets'))
+    if year:
+        for tweet in tweets:
+            tweet['year'] = parser.parse(tweet['created_at']).year
+        words = [tweet['text'] for tweet in tweets if tweet['year'] == year]
+    else:
+        words = [tweet['text'] for tweet in tweets]
+    return words
+
+
+def _get_articles(year=None):
+    articles = list(Database.get_all_documents('activist_events', 'whaling_articles', sort='seedwords_score'))
+    if year:
+        for article in articles:
+            article['year'] = parser.parse(article['publication_date']).year
+        articles = [article['body'] for article in articles if article['year'] == year]
+    else:
+        articles = [article['body'] for article in articles]
+    return articles
+
 
 seedwords = _get_seedwords()
 
-tweets = _get_tweets()
-print create_tweet_overlap_per_entity_type(seedwords, tweets)
-print
-tweets = _get_tweets(2014)
-print create_tweet_overlap_per_entity_type(seedwords, tweets)
-print
-tweets = _get_tweets(2015)
-print create_tweet_overlap_per_entity_type(seedwords, tweets)
+seedwords_results = {
+    'tweets (all)': create_tweet_overlap_per_entity_type(seedwords, _get_tweets()),
+    'tweets (2014)': create_tweet_overlap_per_entity_type(seedwords, _get_tweets(2014)),
+    'tweets (2015)': create_tweet_overlap_per_entity_type(seedwords, _get_tweets(2015)),
+    'news articles/blogs (all)': create_tweet_overlap_per_entity_type(seedwords, _get_articles()),
+    'news articles/blogs (2010)': create_tweet_overlap_per_entity_type(seedwords, _get_articles(2010)),
+    'news articles/blogs (2011)': create_tweet_overlap_per_entity_type(seedwords, _get_articles(2011)),
+    'news articles/blogs (2012)': create_tweet_overlap_per_entity_type(seedwords, _get_articles(2012)),
+    'news articles/blogs (2013)': create_tweet_overlap_per_entity_type(seedwords, _get_articles(2013)),
+    'news articles/blogs (2014)': create_tweet_overlap_per_entity_type(seedwords, _get_articles(2014)),
+    'news articles/blogs (2015)': create_tweet_overlap_per_entity_type(seedwords, _get_articles(2015)),
+    'tweets2015 (all)': create_tweet_overlap_per_entity_type(seedwords, _get_tweets2015())
+}
+
+wikiwords = _get_wikiwords()
+
+wikiwords_results = {
+    'tweets (all)': create_tweet_overlap_per_entity_type(wikiwords, _get_tweets()),
+    'tweets (2014)': create_tweet_overlap_per_entity_type(wikiwords, _get_tweets(2014)),
+    'tweets (2015)': create_tweet_overlap_per_entity_type(wikiwords, _get_tweets(2015)),
+    'news articles/blogs (all)': create_tweet_overlap_per_entity_type(wikiwords, _get_articles()),
+    'news articles/blogs (2010)': create_tweet_overlap_per_entity_type(wikiwords, _get_articles(2010)),
+    'news articles/blogs (2011)': create_tweet_overlap_per_entity_type(wikiwords, _get_articles(2011)),
+    'news articles/blogs (2012)': create_tweet_overlap_per_entity_type(wikiwords, _get_articles(2012)),
+    'news articles/blogs (2013)': create_tweet_overlap_per_entity_type(wikiwords, _get_articles(2013)),
+    'news articles/blogs (2014)': create_tweet_overlap_per_entity_type(wikiwords, _get_articles(2014)),
+    'news articles/blogs (2015)': create_tweet_overlap_per_entity_type(wikiwords, _get_articles(2015)),
+    'tweets2015 (all)': create_tweet_overlap_per_entity_type(wikiwords, _get_tweets2015())
+}
+
+csv = unicodecsv.writer(open('seedwordsoverlap_all.csv', "wb+"))
+for dataset in seedwords_results:
+    csv.writerow([dataset])
+    csv.writerow(['seedword','count'])
+    for seedword, count in seedwords_results[dataset]:
+        csv.writerow([seedword, count])
+    csv.writerow([])
+
+
+csv = unicodecsv.writer(open('wikiwordsoverlap_all.csv', "wb+"))
+for dataset in wikiwords_results:
+    csv.writerow([dataset])
+    csv.writerow(['wiki_entity','count'])
+    for seedword, count in wikiwords_results[dataset]:
+        csv.writerow([seedword, count])
+    csv.writerow([])
+
 
