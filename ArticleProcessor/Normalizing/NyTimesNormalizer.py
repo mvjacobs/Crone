@@ -1,5 +1,8 @@
 __author__ = 'marc'
 
+import nltk
+from bs4 import BeautifulSoup as bs
+
 def map_nytimes_to_crone(documents):
     crone_docs = []
 
@@ -7,7 +10,21 @@ def map_nytimes_to_crone(documents):
         print 'processing %s' % document[u'web_url']
         crone_doc = dict()
         crone_doc[u'title'] = document[u'headline'][u'main']
-        crone_doc[u'abstract'] = document[u'abstract']
+
+        if isinstance(document[u'content'], (list, tuple)):
+            document[u'content'] = ' '.join(document[u'content'])
+        tokenizer = nltk.data.load('tokenizers/punkt/english.pickle')
+        sentences = tokenizer.tokenize(document[u'content'])
+        try:
+            crone_doc[u'abstract'] = "%s %s" % (sentences[0], sentences[1])
+        except IndexError:
+            crone_doc[u'abstract'] = sentences[0]
+
+        # if not document[u'abstract']:
+        #     crone_doc[u'abstract'] = document[u'snippet']
+        # else:
+        #     crone_doc[u'abstract'] = document[u'abstract']
+
         crone_doc[u'word_count'] = document[u'word_count']
         crone_doc[u'source'] = document[u'source']
         crone_doc[u'url'] = document[u'web_url']

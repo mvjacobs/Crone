@@ -105,7 +105,7 @@ def create_news_top_100(newspages):
         )
         i += 1
 
-        return urls
+    return urls
 
 
 def newserlist_to_json():
@@ -119,5 +119,17 @@ def newserlist_to_json():
     with open('newser.json', 'w') as f:
         json.dump(newserlist, f, ensure_ascii=False)
 
+def newserlist_all_to_json():
+    """Convert newser.com top 100 list to json
 
-newserlist_to_json()
+    :return: newser.json file
+    """
+    links_list = get_category_links("http://www.newser.com/topsites.aspx?type=all")
+    newserlist = create_news_top_100(links_list)
+
+    with open('newser_all.json', 'w') as f:
+        json.dump(newserlist, f, ensure_ascii=False)
+
+
+
+newserlist_all_to_json()

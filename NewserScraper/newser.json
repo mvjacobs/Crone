@@ -1,0 +1,502 @@
+[
+  {
+    "url": "ap.org",
+    "id": 1,
+    "name": "Associated Press"
+  },
+  {
+    "url": "nytimes.com",
+    "id": 2,
+    "name": "New York Times"
+  },
+  {
+    "url": "wsj.com",
+    "id": 3,
+    "name": "Wall Street Journal"
+  },
+  {
+    "url": "washingtonpost.com",
+    "id": 4,
+    "name": "Washington Post"
+  },
+  {
+    "url": "reuters.com",
+    "id": 5,
+    "name": "Reuters"
+  },
+  {
+    "url": "bbc.co.uk",
+    "id": 6,
+    "name": "BBC"
+  },
+  {
+    "url": "latimes.com",
+    "id": 7,
+    "name": "Los Angeles Times"
+  },
+  {
+    "url": "cnn.com",
+    "id": 8,
+    "name": "CNN"
+  },
+  {
+    "url": "politico.com",
+    "id": 9,
+    "name": "Politico"
+  },
+  {
+    "url": "telegraph.co.uk",
+    "id": 10,
+    "name": "Telegraph (UK)"
+  },
+  {
+    "url": "theguardian.com",
+    "id": 11,
+    "name": "Guardian (UK)"
+  },
+  {
+    "url": "abcnews.go.com",
+    "id": 12,
+    "name": "ABC News"
+  },
+  {
+    "url": "nydailynews.com",
+    "id": 13,
+    "name": "New York Daily News"
+  },
+  {
+    "url": "usatoday.com",
+    "id": 14,
+    "name": "USA Today"
+  },
+  {
+    "url": "bloomberg.com",
+    "id": 15,
+    "name": "Bloomberg"
+  },
+  {
+    "url": "nypost.com",
+    "id": 16,
+    "name": "New York Post"
+  },
+  {
+    "url": "huffingtonpost.com",
+    "id": 17,
+    "name": "Huffington Post"
+  },
+  {
+    "url": "slate.com",
+    "id": 18,
+    "name": "Slate"
+  },
+  {
+    "url": "chicagotribune.com",
+    "id": 19,
+    "name": "Chicago Tribune"
+  },
+  {
+    "url": "thetimes.co.uk",
+    "id": 20,
+    "name": "Times (UK)"
+  },
+  {
+    "url": "tmz.com",
+    "id": 21,
+    "name": "TMZ"
+  },
+  {
+    "url": "time.com",
+    "id": 22,
+    "name": "Time"
+  },
+  {
+    "url": "people.com",
+    "id": 23,
+    "name": "People"
+  },
+  {
+    "url": "MarketWatch.com",
+    "id": 24,
+    "name": "MarketWatch"
+  },
+  {
+    "url": "salon.com",
+    "id": 25,
+    "name": "Salon"
+  },
+  {
+    "url": "dailymail.co.uk",
+    "id": 26,
+    "name": "Daily Mail (UK)"
+  },
+  {
+    "url": "msnbc.com",
+    "id": 27,
+    "name": "MSNBC"
+  },
+  {
+    "url": "npr.org",
+    "id": 28,
+    "name": "NPR"
+  },
+  {
+    "url": "thestreet.com",
+    "id": 29,
+    "name": "TheStreet"
+  },
+  {
+    "url": "boston.combostonglobe",
+    "id": 30,
+    "name": "Boston Globe"
+  },
+  {
+    "url": "gawker.com",
+    "id": 31,
+    "name": "Gawker"
+  },
+  {
+    "url": "sfgate.com",
+    "id": 32,
+    "name": "San Francisco Chronicle"
+  },
+  {
+    "url": "livescience.com",
+    "id": 33,
+    "name": "LiveScience"
+  },
+  {
+    "url": "thedailybeast.com",
+    "id": 34,
+    "name": "Daily Beast"
+  },
+  {
+    "url": "afp.com",
+    "id": 35,
+    "name": "AFP"
+  },
+  {
+    "url": "csmonitor.com",
+    "id": 36,
+    "name": "Christian Science Monitor"
+  },
+  {
+    "url": "independent.co.uk",
+    "id": 37,
+    "name": "Independent (UK)"
+  },
+  {
+    "url": "eonline.com",
+    "id": 38,
+    "name": "E! Online"
+  },
+  {
+    "url": "thehill.com",
+    "id": 39,
+    "name": "The Hill"
+  },
+  {
+    "url": "hollywoodreporter.com",
+    "id": 40,
+    "name": "Hollywood Reporter"
+  },
+  {
+    "url": "foxnews.com",
+    "id": 41,
+    "name": "Fox News"
+  },
+  {
+    "url": "newsy.com",
+    "id": 42,
+    "name": "Newsy"
+  },
+  {
+    "url": "None",
+    "id": 43,
+    "name": "Wired"
+  },
+  {
+    "url": "newsweek.com",
+    "id": 44,
+    "name": "Newsweek"
+  },
+  {
+    "url": "cbsnews.com",
+    "id": 45,
+    "name": "CBS News"
+  },
+  {
+    "url": "spiegel.de",
+    "id": 46,
+    "name": "Der Spiegel"
+  },
+  {
+    "url": "ny.gov",
+    "id": 47,
+    "name": "New York"
+  },
+  {
+    "url": "radaronline.com",
+    "id": 48,
+    "name": "Radar"
+  },
+  {
+    "url": "theguardian.com",
+    "id": 49,
+    "name": "The Guardian"
+  },
+  {
+    "url": "mashable.com",
+    "id": 50,
+    "name": "Mashable"
+  },
+  {
+    "url": "ft.com",
+    "id": 51,
+    "name": "Financial Times (UK)"
+  },
+  {
+    "url": "usmagazine.com",
+    "id": 52,
+    "name": "Us Weekly"
+  },
+  {
+    "url": "espn.go.com",
+    "id": 53,
+    "name": "ESPN"
+  },
+  {
+    "url": "miamiherald.com",
+    "id": 54,
+    "name": "Miami Herald"
+  },
+  {
+    "url": "theatlantic.com",
+    "id": 55,
+    "name": "The Atlantic"
+  },
+  {
+    "url": "chron.com",
+    "id": 56,
+    "name": "Houston Chronicle"
+  },
+  {
+    "url": "forbes.com",
+    "id": 57,
+    "name": "Forbes"
+  },
+  {
+    "url": "mediaite.com",
+    "id": 58,
+    "name": "Mediaite"
+  },
+  {
+    "url": "cnet.com",
+    "id": 59,
+    "name": "CNET"
+  },
+  {
+    "url": "rottentomatoes.com",
+    "id": 60,
+    "name": "Rotten Tomatoes"
+  },
+  {
+    "url": "nbc.com",
+    "id": 61,
+    "name": "NBC News"
+  },
+  {
+    "url": "ajc.com",
+    "id": 62,
+    "name": "Atlanta Journal-Constitution"
+  },
+  {
+    "url": "variety.com",
+    "id": 63,
+    "name": "Variety"
+  },
+  {
+    "url": "nbcnews.com",
+    "id": 64,
+    "name": "nbcnews.com"
+  },
+  {
+    "url": "thesun.co.uk",
+    "id": 65,
+    "name": "Sun (UK)"
+  },
+  {
+    "url": "newser.com",
+    "id": 66,
+    "name": "newser.com"
+  },
+  {
+    "url": "businessweek.com",
+    "id": 67,
+    "name": "Businessweek"
+  },
+  {
+    "url": "freep.com",
+    "id": 68,
+    "name": "Detroit Free Press"
+  },
+  {
+    "url": "independent.co.uk",
+    "id": 69,
+    "name": "Independent"
+  },
+  {
+    "url": "vanityfair.com",
+    "id": 70,
+    "name": "Vanity Fair"
+  },
+  {
+    "url": "space.com",
+    "id": 71,
+    "name": "Space.com"
+  },
+  {
+    "url": "orlandosentinel.com",
+    "id": 72,
+    "name": "Orlando Sentinel"
+  },
+  {
+    "url": "azcentral.com",
+    "id": 73,
+    "name": "Arizona Republic (Phoenix)"
+  },
+  {
+    "url": "mercurynews.com",
+    "id": 74,
+    "name": "San Jose Mercury News"
+  },
+  {
+    "url": "inquirer.com",
+    "id": 75,
+    "name": "Philadelphia Inquirer"
+  },
+  {
+    "url": "businessinsider.com",
+    "id": 76,
+    "name": "Business Insider"
+  },
+  {
+    "url": "talkingpointsmemo.com",
+    "id": 77,
+    "name": "Talking Points Memo"
+  },
+  {
+    "url": "newyorker.com",
+    "id": 78,
+    "name": "New Yorker"
+  },
+  {
+    "url": "rollingstone.com",
+    "id": 79,
+    "name": "Rolling Stone"
+  },
+  {
+    "url": "nj.com",
+    "id": 80,
+    "name": "Star-Ledger"
+  },
+  {
+    "url": "dallasnews.com",
+    "id": 81,
+    "name": "Dallas Morning News"
+  },
+  {
+    "url": "bbc.com",
+    "id": 82,
+    "name": "bbc.com"
+  },
+  {
+    "url": "suntimes.com",
+    "id": 83,
+    "name": "Chicago Sun-Times"
+  },
+  {
+    "url": "theglobeandmail.com",
+    "id": 84,
+    "name": "Globe and Mail"
+  },
+  {
+    "url": "economist.com",
+    "id": 85,
+    "name": "Economist"
+  },
+  {
+    "url": "newrepublic.com",
+    "id": 86,
+    "name": "New Republic"
+  },
+  {
+    "url": "denverpost.com",
+    "id": 87,
+    "name": "Denver Post"
+  },
+  {
+    "url": "startribune.com",
+    "id": 88,
+    "name": "Minneapolis Star Tribune"
+  },
+  {
+    "url": "thefrisky.com",
+    "id": 89,
+    "name": "The Frisky"
+  },
+  {
+    "url": "bostonherald.com",
+    "id": 90,
+    "name": "Boston Herald"
+  },
+  {
+    "url": "mirror.co.uk",
+    "id": 91,
+    "name": "Daily Mirror (UK)"
+  },
+  {
+    "url": "ew.com",
+    "id": 92,
+    "name": "Entertainment Weekly"
+  },
+  {
+    "url": "adn.com",
+    "id": 93,
+    "name": "Anchorage Daily News"
+  },
+  {
+    "url": "detnews.com",
+    "id": 94,
+    "name": "Detroit News"
+  },
+  {
+    "url": "baltimoresun.com",
+    "id": 95,
+    "name": "Baltimore Sun"
+  },
+  {
+    "url": "adage.com",
+    "id": 96,
+    "name": "Advertising Age"
+  },
+  {
+    "url": "huffingtonpost.com",
+    "id": 97,
+    "name": "PopEater"
+  },
+  {
+    "url": "blog.aol.com",
+    "id": 98,
+    "name": "AOL News"
+  },
+  {
+    "url": "dailytelegraph.com.au",
+    "id": 99,
+    "name": "Daily Telegraph"
+  },
+  {
+    "url": "seattletimes.com",
+    "id": 100,
+    "name": "Seattle Times"
+  }
+]

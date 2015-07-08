@@ -1,6 +1,6 @@
 __author__ = 'marc'
 
-from Analyzing import RankingWordLists
+from Analyzing import WordListAnalysis
 from collections import Counter
 import unicodecsv
 from dateutil import parser
@@ -10,7 +10,7 @@ from itertools import groupby
 import re
 
 def create_dataset_overlap_matrix():
-    word_lists = RankingWordLists.get_ranking_word_lists()
+    word_lists = WordListAnalysis.get_ranking_word_lists()
     results = {}
     blacklist = []
 
@@ -48,15 +48,18 @@ def _get_seedwords():
         words = [word[0] for word in unicodecsv.reader(csvfile, dialect="excel-tab")]
     return words
 
+
 def _get_wikiwords():
     with open('WordLists/wikiwords.csv', 'rb') as csvfile:
         words = [word[0] for word in unicodecsv.reader(csvfile)]
     return words
 
+
 def _get_crowd2015words():
     with open('WordLists/crowd2015.csv', 'rb') as csvfile:
         words = [re.escape(word[1]).lower() for word in unicodecsv.reader(csvfile)]
     return set(words)
+
 
 def _get_crowd2014words():
     with open('WordLists/crowd2014.csv', 'rb') as csvfile:
@@ -85,6 +88,7 @@ def _get_tweets2015(year=None):
     else:
         words = [tweet['text'] for tweet in tweets]
     return words
+
 
 def _get_articles_tommaso(year=None):
     with open('Corpora/articles.csv', 'rb') as csvfile:

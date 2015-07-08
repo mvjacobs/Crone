@@ -18,6 +18,7 @@ def get_nytimes_articles(article_type, limit=0):
     credibility_fields = {
         'headline.main': 1,
         'abstract': 1,
+        'snippet': 1,
         'word_count': 1,
         'source': 1,
         'web_url': 1,
@@ -99,8 +100,8 @@ def get_all_documents(db, coll, sort=None):
     coll = db[coll]
     articles = coll.find()
     if sort:
-        articles.sort(sort)
-    return articles
+        articles.sort(sort, -1)
+    return list(articles)
 
 
 def perform_query(database, collection, fields, qfilter, sort, limit=0):

@@ -1,5 +1,8 @@
 __author__ = 'marc'
 
+import nltk
+from bs4 import BeautifulSoup as bs
+
 def map_guardian_to_crone(documents):
     crone_docs = []
 
@@ -13,7 +16,19 @@ def map_guardian_to_crone(documents):
             continue
 
         crone_doc[u'body'] = document[u'body']
-        crone_doc[u'abstract'] = document[u'abstract']
+        soup = bs(document[u'body'])
+        raw_content = soup.getText()
+
+        tokenizer = nltk.data.load('tokenizers/punkt/english.pickle')
+        sentences = tokenizer.tokenize(raw_content)
+        try:
+            crone_doc[u'abstract'] = "%s %s" % (sentences[0], sentences[1])
+        except IndexError:
+            crone_doc[u'abstract'] = sentences[0]
+        except:
+            continue
+
+        # crone_doc[u'abstract'] = document[u'abstract']
 
         try:
             crone_doc[u'author'] = '%s %s' % (

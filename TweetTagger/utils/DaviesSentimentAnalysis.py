@@ -57,11 +57,29 @@ def test():
     # Here we have tweets which we have already tokenized (turned into an array of words)
     tweet1 = ['I', 'love', 'holidays']
     tweet2 = ['very', 'sad']
+    tweet3 = [
+        "The",
+        "Southern",
+        "Ocean",
+        "Whale",
+        "Sanctuary",
+        "area",
+        "designated",
+        "hunt",
+        "zone",
+        "ONLY",
+        "AFTER",
+        "IWC",
+        "whaling",
+        "moratorium",
+        "lifted",
+        "#Tweet4Taiji"
+    ]
 
     # Calculate the probabilities that the tweets are happy or sad
-    tweet1_happy_prob, tweet1_sad_prob = classifySentiment(tweet1, happy_log_probs, sad_log_probs)
+    tweet1_happy_prob, tweet1_sad_prob = classifySentiment(tweet3, happy_log_probs, sad_log_probs)
     tweet2_happy_prob, tweet2_sad_prob = classifySentiment(tweet2, happy_log_probs, sad_log_probs)
-    print getHappiness(tweet2)
-    print getSadness(tweet2)
-    #print "The probability that tweet1 (", tweet1, ") is happy is ", tweet1_happy_prob, "and the probability that it is sad is ", tweet1_sad_prob
-    #print "The probability that tweet2 (", tweet2, ") is sad is ", tweet2_happy_prob, "and the probability that it is sad is ", tweet2_sad_prob
+    print getHappiness(tweet3)
+    print getSadness(tweet3)
+    print "The probability that tweet3 (", tweet3, ") is happy is ", tweet1_happy_prob, "and the probability that it is sad is ", tweet1_sad_prob
+    print "The probability that tweet2 (", tweet2, ") is sad is ", tweet2_happy_prob, "and the probability that it is sad is ", tweet2_sad_prob
