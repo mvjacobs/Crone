@@ -10,4 +10,4 @@ import random
 #sample = TweetSetFilter.create_random_sample(200, tweets)
 tweets = ActivistEvents.get_tweets('whaling_tweets_2000_4', 0)
 tweets = random.sample(tweets, 100)
-Output.create_csv_for_frankiina_task(tweets, "out/crowdflower_100_1.csv")
+Output.create_csv_for_frankiina_task(tweets, "out/crowdflower_100_2.csv")

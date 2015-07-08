@@ -103,3 +103,69 @@ def create_csv_for_crowd_task(articles, filename):
 
     create_csv_from_articles(headers, rows, filename)
 
+
+def create_csv_for_frankiina_task(articles, filename):
+    headers = [
+        'id1',
+        'text1',
+        'article_uppercase_count1',
+        'article_nouns_count1',
+        'article_comments_count1',
+        'article_numerical_count1',
+        'article_wiki_entities_count1',
+        'article_word_count1',
+        'article_punctuation_count1',
+        'article_keywords_count1',
+        'sentiment1',
+        'article_publication_date1',
+        'id2',
+        'text2',
+        'article_uppercase_count2',
+        'article_nouns_count2',
+        'article_comments_count2',
+        'article_numerical_count2',
+        'article_wiki_entities_count2',
+        'article_word_count2',
+        'article_punctuation_count2',
+        'article_keywords_count2',
+        'sentiment2',
+        'article_publication_date2'
+    ]
+
+    rows = []
+    for key, article in enumerate(articles):
+        next_article = key + 1
+
+        if next_article > len(articles)-1:
+            break
+
+        article1 = _parse_article_comparison(articles, key)
+        article2 = _parse_article_comparison(articles, next_article)
+        rows.append(article1 + article2)
+        print 'Tweet %i added' % key
+
+    # link last tweet to the first tweet
+    article1 = _parse_article_comparison(articles, len(articles)-1)
+    article2 = _parse_article_comparison(articles, 0)
+    rows.append(article1 + article2)
+    create_csv_from_articles(headers, rows, filename)
+
+
+def _parse_article_comparison(articles, key):
+    row = [
+        articles[key]['_id'],
+        articles[key]['abstract'],
+        articles[key]['counts']['article_uppercase_count'],
+        articles[key]['counts']['article_nouns_count'],
+        articles[key]['counts']['article_comment_count'],
+        articles[key]['counts']['article_numerical_count'],
+        articles[key]['counts']['article_wiki_entities_count'],
+        articles[key]['counts']['article_word_count'],
+        articles[key]['counts']['article_punctuation_count'],
+        articles[key]['counts']['article_keywords_count'],
+        articles[key]['sentiment']['sentiwordnet'],
+        articles[key]['dates']['article_publication_date']
+    ]
+
+    return row
+

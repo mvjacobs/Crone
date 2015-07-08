@@ -25,7 +25,8 @@ def get_numericals(tokens_with_pos):
 
 # http://www.nltk.org/book/ch05.html
 def get_punctuation(tokens_with_pos):
-    numbers = [word for word, pos_type in tokens_with_pos if pos_type in ['SYM', ',']]
+    symbols = ['SYM', ',', '.', ':', '#', '$', ')', '(']
+    numbers = [word for word, pos_type in tokens_with_pos if pos_type in symbols]
 
     return numbers
 
