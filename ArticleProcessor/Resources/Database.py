@@ -101,6 +101,7 @@ def get_all_documents(db, coll, sort=None):
     articles = coll.find()
     if sort:
         articles.sort(sort, -1)
+    articles.limit(100)
     return list(articles)
 
 
