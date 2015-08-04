@@ -10,3 +10,4 @@ Calculate the Reliability of Online News Events (CRONE) is the working title of 
 - Entity Extractor
 - Crowd Processor
 - CrowdFlower Templates
+- R scripts (plots)
