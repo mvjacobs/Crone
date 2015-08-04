@@ -104,9 +104,11 @@ def results_to_csv(path_to_csv, data):
         a.writerow(['date', 'text', 'credible', 'non-credible', 'same'])
         a.writerows(data)
 
+
 tw1 = csv_to_json('Results/articles_crowd.csv')
-# counts = count_occurences_articles(tw1)
-# ranked_tw1 = pairwise_comparison(counts)
-# ranked_to_csv('articles_crowd_comparison.csv', ranked_tw1)
-# tw1_results = tweet_results(counts)
-# results_to_csv('articles_crowd_results.csv', tw1_results)
+counts = count_occurences_articles(tw1)
+ranked_tw1 = pairwise_comparison(counts)
+ranked_to_csv('articles_crowd_comparison.csv', ranked_tw1)
+
+tw1_results = tweet_results(counts)
+results_to_csv('articles_crowd_results.csv', tw1_results)

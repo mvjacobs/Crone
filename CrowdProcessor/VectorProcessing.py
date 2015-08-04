@@ -172,6 +172,7 @@ def feature_vector_to_csv(path_to_csv, vector):
             tweet_id, feature_vector = row
             a.writerow([tweet_id] + [str(feature) for feature in feature_vector])
 
+
 def worker_vector_to_csv(path_to_csv, vector):
     with open(path_to_csv, 'w') as fp:
         a = unicodecsv.writer(fp)
@@ -186,8 +187,8 @@ def worker_vector_to_csv(path_to_csv, vector):
 tw1 = get_data_from_csv('Results/2tw.csv')
 rows = prepocess_vectors(tw1)
 rows = process_worker_vectors(rows, get_worker_vectors(rows))
-# rows = process_tweet_vectors(rows)
-# rows = process_tweet_credibility_vectors(rows)
-# rows = process_tweet_features_vectors(rows)
-# rows = Metrics.replace_nan_to_zero(rows)
-# results_to_csv('Output/worker_vector_tweets1.csv', rows)
+rows = process_tweet_vectors(rows)
+rows = process_tweet_credibility_vectors(rows)
+rows = process_tweet_features_vectors(rows)
+rows = Metrics.replace_nan_to_zero(rows)
+results_to_csv('Output/worker_vector_tweets1.csv', rows)
