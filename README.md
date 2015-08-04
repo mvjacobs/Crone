@@ -7,7 +7,5 @@ Calculate the Reliability of Online News Events (CRONE) is the working title of 
 - Tweet Miner
 - Tweet Processor
 - Newser Scraper
-
-
-
-
+- Entity Extractor
+- Crowd Processor
