@@ -19,8 +19,6 @@ def write_article_to_csv(articles, path_to_csv):
 
 
 def filter_features_articles(documents):
-    output = [get_header()]
-
     documents1 = [document for document in documents if document['morecredible'] == '1']
     features1 = get_features_articles(documents1, 1)
 
@@ -28,12 +26,9 @@ def filter_features_articles(documents):
     features2 = get_features_articles(documents2, 2)
 
     all_features = features1 + features2
-
     grouped_features = count_features(all_features)
 
-    output += grouped_features
-
-    return output
+    return [get_header()] + grouped_features
 
 
 def get_header():
@@ -90,7 +85,8 @@ def count_features(articles):
     return out
 
 
-articles = get_data_from_csv('Results/articles.csv')
-articles = filter_features_articles(articles)
-write_article_to_csv(articles, 'Output/articles_features.csv')
+def create_article_results_csv():
+    articles = get_data_from_csv('Results/articles.csv')
+    articles = filter_features_articles(articles)
+    write_article_to_csv(articles, 'Output/articles_features.csv')
 
