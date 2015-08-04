@@ -1,4 +1,4 @@
-tweet_other_features <- read.csv("D:/Dropbox/School/Thesis/Final/results/Correlation/tweet_other_features.csv")
+tweet_other_features <- read.csv("./Correlation/tweet_other_features.csv")
 
 y1 = tweet_other_features$credible_count
 
