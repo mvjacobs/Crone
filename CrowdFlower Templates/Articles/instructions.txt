@@ -1,0 +1,11 @@
+TITLE
+Article Credibility Comparison (Whaling)
+
+INSTRUCTIONS
+Below you see two article abstracts about "whaling" or "whale hunting". Additionally, factors related to the articles (e.g. comments, sentiment, word count) are displayed. Answer the following questions:  <br/>
+
+<b>STEP 1:</b> Compare the articles (and features) and determine what article is <b>MORE CREDIBLE</b><br/>
+<b>STEP 2:</b> Select the <b>FACTORS</b> that indicate the credibility of the article.<br/>
+<b>STEP 3:</b> Provide any <b>COMMENTS</b>. (optional) <br/>
+
+<b>CREDIBILITY</b> is defined as a combination of <b>COMPETENCE</b>, <b>TRUSTWORTHINESS</b>, and <b>GOODWILL</b>.

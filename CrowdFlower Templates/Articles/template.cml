@@ -1,0 +1,170 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10"><hr /></div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-4 col-md-offset-3">
+      <cml:radios label="What article is more credible?" name="What article is more credible?" validates="required">     
+        <cml:radio value="tweet1" label="Left article is MORE credible than right article" />
+        <cml:radio value="tweet2" label="Left article is LESS credible than right article" />
+        <cml:radio value="same" label="Both articles are EQUALLY credible" />
+      </cml:radios>
+      
+      <cml:hidden name="more-credible" value="0" />
+      <cml:hidden name="less-credible" value="0" />
+      <cml:hidden name="same" value="0" />
+      <cml:hidden name="article_id1" value="{{id1}}" />
+      <cml:hidden name="article_id2" value="{{id2}}" />
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-10"><hr /></div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-5">
+      <div id="tweet1-box" class="panel panel-default">
+        <div class="panel-heading text-center"><h2>Please select one of the options above</h2></div>
+        <div class="panel-body">
+          <div class="panel-element text-justify">
+            <div class="well well-sm"><span class="tweet">{{text1}}</span></div>
+          </div>
+          <div class="panel-element">
+            <div class="list-group">
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The date the article was published.">
+                <cml:hidden name="result_article_publication_date1" value="0" />
+                <span class="badge">{{article_publication_date1  | date: "%h %d, %Y" }}</span>
+                Published
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The number of uppercase characters in the article.">
+                <cml:hidden name="result_article_uppercase_count1" value="0" />
+                <span class="badge">{{article_uppercase_count1}}</span>
+                Uppercase characters
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The number of proper nouns (e.g. people, organizations) in the tweet.">
+                <cml:hidden name="result_article_nouns_count1" value="0" />
+                <span class="badge">{{article_nouns_count1}}</span>
+                Nouns
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The number of comments the article has.">
+                <cml:hidden name="result_article_comments_count1" value="0" />
+                <span class="badge">{{article_comments_count1}}</span>
+                Comments
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The number of numerical occurences (i.e. 1,000, thousand etc.) in the article.">
+                <cml:hidden name="result_article_numerical_count1" value="0" />
+                <span class="badge">{{article_numerical_count1}}</span>
+                Numerical occurences
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The number of words with a Wikipedia page in the article.">
+                <cml:hidden name="result_article_wiki_entities_count1" value="0" />
+                <span class="badge">{{article_wiki_entities_count1}}</span>
+                Wikipedia articles
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The number of words in the article.">
+                <cml:hidden name="result_article_word_count1" value="0" />
+                <span class="badge">{{article_word_count1}}</span>
+                words in the article
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The number of symbols/punctuations in the text (i.e. &quot;,^,%)">
+                <cml:hidden name="result_article_punctuation_count1" value="0" />
+                <span class="badge">{{article_punctuation_count1}}</span>
+                Symbol occurences
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The number of keywords attached to the article.">
+                <cml:hidden name="result_article_keywords_count1" value="0" />
+                <span class="badge">{{article_keywords_count1}}</span>
+                Keywords
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The sentiment score according to sentiwordnet (negative value means negative sentiment, 0 is neutral, and a positive value means positive sentiment).">
+                <cml:hidden name="result_sentiment1" value="0" />
+                <span class="badge">{{sentiment1}}</span>
+                Sentiment (Sentiwordnet) score
+              </a>
+            </div>
+          </div>
+        </div>       
+      </div>
+    </div>
+    <div class="col-md-5"> 
+      <div id="tweet2-box" class="panel panel-default">
+        <div class="panel-heading text-center"><h2>Please select one of the options above</h2></div>
+        <div class="panel-body">
+          <div class="panel-element text-justify">
+            <div class="well well-sm"><span class="tweet">{{text2}}</span></div>
+          </div>
+          <div class="panel-element">
+            <div class="list-group">
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The date the article was published.">
+                <cml:hidden name="result_article_publication_date2" value="0" />
+                <span class="badge">{{article_publication_date2  | date: "%h %d, %Y" }}</span>
+                Published
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The number of uppercase characters in the article.">
+                <cml:hidden name="result_article_uppercase_count2" value="0" />
+                <span class="badge">{{article_uppercase_count2}}</span>
+                Uppercase characters
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The number of proper nouns (e.g. people, organizations) in the tweet.">
+                <cml:hidden name="result_article_nouns_count2" value="0" />
+                <span class="badge">{{article_nouns_count2}}</span>
+                Nouns
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The number of comments the article has.">
+                <cml:hidden name="result_article_comments_count2" value="0" />
+                <span class="badge">{{article_comments_count2}}</span>
+                Comments
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The number of numerical occurences (i.e. 1,000, thousand etc.) in the article.">
+                <cml:hidden name="result_article_numerical_count2" value="0" />
+                <span class="badge">{{article_numerical_count2}}</span>
+                Numerical occurences
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The number of words with a Wikipedia page in the article.">
+                <cml:hidden name="result_article_wiki_entities_count2" value="0" />
+                <span class="badge">{{article_wiki_entities_count2}}</span>
+                Wikipedia articles
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The number of words in the article.">
+                <cml:hidden name="result_article_word_count2" value="0" />
+                <span class="badge">{{article_word_count2}}</span>
+                words in the article
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The number of symbols/punctuations in the text (i.e. &quot;,^,%)">
+                <cml:hidden name="result_article_punctuation_count2" value="0" />
+                <span class="badge">{{article_punctuation_count2}}</span>
+                Symbol occurences
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The number of keywords attached to the article.">
+                <cml:hidden name="result_article_keywords_count2" value="0" />
+                <span class="badge">{{article_keywords_count2}}</span>
+                Keywords
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The sentiment score according to sentiwordnet (negative value means negative sentiment, 0 is neutral, and a positive value means positive sentiment).">
+                <cml:hidden name="result_sentiment2" value="0" />
+                <span class="badge">{{sentiment2}}</span>
+                Sentiment (Sentiwordnet) score
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-10"><hr /></div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-2 text-center">
+      <cml:textarea label="Comments (optional)" name="comments" />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10"><hr /></div>
+  </div>
+</div>

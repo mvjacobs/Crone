@@ -1,0 +1,218 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10"><hr /></div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-4 col-md-offset-3">
+      <cml:radios label="What tweet is more credible?" name="What tweet is more credible?" validates="required">     
+        <cml:radio value="tweet1" label="Left tweet is MORE credible than right tweet" />
+        <cml:radio value="tweet2" label="Left tweet is LESS credible than right tweet" />
+        <cml:radio value="same" label="Both tweets are EQUALLY credible" />
+      </cml:radios>
+      
+      <cml:hidden name="more-credible" value="0" />
+      <cml:hidden name="less-credible" value="0" />
+      <cml:hidden name="same" value="0" />
+      <cml:hidden name="tweet_id1" value="{{id1}}" />
+      <cml:hidden name="tweet_id2" value="{{id2}}" />
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-10"><hr /></div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-5">
+      <div id="tweet1-box" class="panel panel-default">
+        <div class="panel-heading text-center"><h2>Please select one of the options above</h2></div>
+        <div class="panel-body">
+          <div class="panel-element text-center">
+            <div class="well well-lg tweet"><span>{{text1}}</span></div>
+          </div>
+          <div class="panel-element">
+            <div class="list-group">
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The date the author joined Twitter.">
+                <cml:hidden name="result_user_created_at1" value="0" />
+                <span class="badge">{{user_created_at1  | date: "%h %Y" }}</span>
+                Author active since
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The number of posts (statuses) the author has posted.">
+                <cml:hidden name="result_user_statuses_count1" value="0" />
+                <span class="badge">{{user_statuses_count1}}</span>
+                Author posts
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The number of Twitter friends the author has.">
+                <cml:hidden name="result_user_friends_count1" value="0" />
+                <span class="badge">{{user_friends_count1}}</span>
+                Author friends
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The times the author was favorited (liked).">
+                <cml:hidden name="result_user_favourites_count1" value="0" />
+                <span class="badge">{{user_favourites_count1}}</span>
+                Author favourites
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The number of friend lists the author has to categorize his friends.">
+                <cml:hidden name="result_user_listed_count1" value="0" />
+                <span class="badge">{{user_listed_count1}}</span>
+                Author friend lists
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The number of followers the author has.">
+                <cml:hidden name="result_user_followers_count1" value="0" />
+                <span class="badge">{{user_followers_count1}}</span>
+                Author followers
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="Is the author officially verified by Twitter?">
+                <cml:hidden name="result_user_verified1" value="0" />
+                <span class="pull-right">
+                  {% if user_is_verified1 == '1' %}
+                  <i class="fa fa-check green-text"></i>
+                  {% else %}
+                  <i class="fa fa-close red-text"></i>
+                  {% endif %}
+                </span>
+                Author verified
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="Has the author uploaded a profile image?">
+                <cml:hidden name="result_has_user_avatar1" value="0" />
+                <span class="pull-right">
+                  {% if has_user_avatar1 == '1' %}
+                  <i class="fa fa-check green-text"></i>
+                  {% else %}
+                  <i class="fa fa-close red-text"></i>
+                  {% endif %}
+                </span>
+                Author has custom profile image
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="Has the author uploaded a custom background to his profile page?">
+                <cml:hidden name="result_has_user_background1" value="0" />
+                <span class="pull-right">
+                  {% if has_user_background1 == '1' %}
+                  <i class="fa fa-check green-text"></i>
+                  {% else %}
+                  <i class="fa fa-close red-text"></i>
+                  {% endif %}
+                </span>
+                Author uses custom background
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="Is a description about the author available on the profile page?">
+                <cml:hidden name="result_has_user_description1" value="0" />
+                <span class="pull-right">
+                  {% if has_user_description1 == '1' %}
+                  <i class="fa fa-check green-text"></i>
+                  {% else %}
+                  <i class="fa fa-close red-text"></i>
+                  {% endif %}
+                </span>
+                Author has description
+              </a>
+            </div>
+          </div>
+        </div>       
+      </div>
+    </div>
+    <div class="col-md-5"> 
+      <div id="tweet2-box" class="panel panel-default">
+        <div class="panel-heading text-center"><h2>Please select one of the options above</h2></div>
+        <div class="panel-body">
+          <div class="panel-element text-center">
+            <div class="well well-lg tweet"><span>{{text2}}</span></div>
+          </div>
+          <div class="panel-element">
+            <div class="list-group">
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The date the author joined Twitter.">
+                <cml:hidden name="result_user_created_at2" value="0" />
+                <span class="badge">{{user_created_at2  | date: "%h %Y" }}</span>
+                Author active since
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The number of posts (statuses) the author has posted.">
+                <cml:hidden name="result_user_statuses_count2" value="0" />
+                <span class="badge">{{user_statuses_count2}}</span>
+                Author posts
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The number of Twitter friends the author has.">
+                <cml:hidden name="result_user_friends_count2" value="0" />
+                <span class="badge">{{user_friends_count2}}</span>
+                Author friends
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The times the author was favorited (liked).">
+                <cml:hidden name="result_user_favourites_count2" value="0" />
+                <span class="badge">{{user_favourites_count2}}</span>
+                Author favourites
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The number of friend lists the author has to categorize his friends.">
+                <cml:hidden name="result_user_listed_count2" value="0" />
+                <span class="badge">{{user_listed_count2}}</span>
+                Author friend lists
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The number of followers the author has.">
+                <cml:hidden name="result_user_followers_count2" value="0" />
+                <span class="badge">{{user_followers_count2}}</span>
+                Author followers
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="Is the author officially verified by Twitter?">
+                <cml:hidden name="result_user_verified2" value="0" />
+                <span class="pull-right">
+                  {% if user_is_verified2 == '1' %}
+                  <i class="fa fa-check green-text"></i>
+                  {% else %}
+                  <i class="fa fa-close red-text"></i>
+                  {% endif %}
+                </span>
+                Author verified
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="Has the author uploaded a profile image?">
+                <cml:hidden name="result_has_user_avatar2" value="0" />
+                <span class="pull-right">
+                  {% if has_user_avatar2 == '1' %}
+                  <i class="fa fa-check green-text"></i>
+                  {% else %}
+                  <i class="fa fa-close red-text"></i>
+                  {% endif %}
+                </span>
+                Author has custom profile image
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="Has the author uploaded a custom background to his profile page?">
+                <cml:hidden name="result_has_user_background2" value="0" />
+                <span class="pull-right">
+                  {% if has_user_background2 == '1' %}
+                  <i class="fa fa-check green-text"></i>
+                  {% else %}
+                  <i class="fa fa-close red-text"></i>
+                  {% endif %}
+                </span>
+                Author uses custom background
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="Is a description about the author available on the profile page?">
+                <cml:hidden name="result_has_user_description2" value="0" />
+                <span class="pull-right">
+                  {% if has_user_description2 == '1' %}
+                  <i class="fa fa-check green-text"></i>
+                  {% else %}
+                  <i class="fa fa-close red-text"></i>
+                  {% endif %}
+                </span>
+                Author has description
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-10"><hr /></div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-2 text-center">
+      <cml:textarea label="Comments (optional)" name="comments" />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10"><hr /></div>
+  </div>
+</div>

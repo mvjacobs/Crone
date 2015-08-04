@@ -1,0 +1,266 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10"><hr /></div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-4 col-md-offset-3">
+      <cml:radios label="What tweet is more credible?" name="What tweet is more credible?" validates="required">     
+        <cml:radio value="tweet1" label="Left tweet is MORE credible than right tweet" />
+        <cml:radio value="tweet2" label="Left tweet is LESS credible than right tweet" />
+        <cml:radio value="same" label="Both tweets are EQUALLY credible" />
+      </cml:radios>
+      
+      <cml:hidden name="more-credible" value="0" />
+      <cml:hidden name="less-credible" value="0" />
+      <cml:hidden name="same" value="0" />
+      <cml:hidden name="tweet_id1" value="{{id1}}" />
+      <cml:hidden name="tweet_id2" value="{{id2}}" />
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-10"><hr /></div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-5">
+      <div id="tweet1-box" class="panel panel-default">
+        <div class="panel-heading text-center"><h2>Please select one of the options above</h2></div>
+        <div class="panel-body">
+          <div class="panel-element text-center">
+            <div class="well well-lg tweet"><span>{{text1}}</span></div>
+          </div>
+          <div class="panel-element">
+            <div class="list-group">
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The date the tweet was posted.">
+                <cml:hidden name="result_tweet_created_at1" value="0" />
+                <span class="badge">{{tweet_created_at1  | date: "%h %d, %Y" }}</span>
+                Created
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The number of favorites (likes) of the tweet.">
+                <cml:hidden name="result_tweet_favorite_count1" value="0" />
+                <span class="badge">{{tweet_favorite_count1}}</span>
+                Favourites
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The number of retweets (reposts) for the tweet.">
+                <cml:hidden name="result_tweet_retweets_count1" value="0" />
+                <span class="badge">{{tweet_retweets_count1}}</span>
+                Retweets
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The number of official Wikipedia.org entities.">
+                <cml:hidden name="result_tweet_wiki_entities_count1" value="0" />
+                <span class="badge">{{tweet_wiki_entities_count1}}</span>
+                Wikipedia entities
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The number of numerical occurences (i.e. 1,000, thousand etc.)">
+                <cml:hidden name="result_tweet_numerical_count1" value="0" />
+                <span class="badge">{{tweet_numerical_count1}}</span>
+                Numerical occurences
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The number of uppercase characters in the tweet">
+                <cml:hidden name="result_tweet_uppercase_count1" value="0" />
+                <span class="badge">{{tweet_uppercase_count1}}</span>
+                Uppercase characters
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The number of users mentioned in the tweet (i.e. @nytimes, @johnsmith)">
+                <cml:hidden name="result_tweet_user_mentions_count1" value="0" />
+                <span class="badge">{{tweet_user_mentions_count1}}</span>
+                Twitter users mentioned
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The number of symbols/punctuations in the text (i.e. &quot;,^,%)">
+                <cml:hidden name="result_tweet_punctuation_count1" value="0" />
+                <span class="badge">{{tweet_punctuation_count1}}</span>
+                Symbol occurences
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The number of proper nouns in the tags (referring to people, organization etc.)">
+                <cml:hidden name="result_tweet_nouns_count1" value="0" />
+                <span class="badge">{{tweet_nouns_count1}}</span>
+                Nouns in tweet
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The number of hyperlinks in the tweet (often referred to an external website)">
+                <cml:hidden name="result_tweet_url_count1" value="0" />
+                <span class="badge">{{tweet_url_count1}}</span>
+                URL's in tweet
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The number of hashtags (keywords) in the tweet.">
+                <cml:hidden name="result_tweet_hashtag_count1" value="0" />
+                <span class="badge">{{tweet_hashtag_count1}}</span>
+                Hashtags in tweet
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The number of words the tweet consists of.">
+                <cml:hidden name="result_tweet_word_count1" value="0" />
+                <span class="badge">{{tweet_word_count1}}</span>
+                Words in the tweet
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="Is one of the URL's listed on Newser.com (a news summary site)?">
+                <cml:hidden name="result_url_in_newser1" value="0" />
+                <span class="pull-right">
+                  {% if url_in_newser1 == '1' %}
+                  <i class="fa fa-check green-text"></i>
+                  {% else %}
+                  <i class="fa fa-close red-text"></i>
+                  {% endif %}
+                </span>
+                URL listed on Newser.com
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="Is one of the URL's listed in the Newser.com top 100 (www.newser.com/topsites/aspx)?">
+                <cml:hidden name="result_url_in_newser100_1" value="0" />
+                <span class="pull-right">
+                  {% if url_in_newser100_1 == '1' %}
+                  <i class="fa fa-check green-text"></i>
+                  {% else %}
+                  <i class="fa fa-close red-text"></i>
+                  {% endif %}
+                </span>
+                URL listed in top 100 on Newser.com
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="What is the sentiment (using the sentiment140 index) of the tweet (negative, neutral, positive)?">
+                <cml:hidden name="result_sentiment140_score1" value="0" />
+                {% if sentiment140_score1 == '0' %}
+                <span class="label label-danger label-as-badge pull-right">negative</span>
+                {% elsif sentiment140_score1 == '2' %}
+                <span class="label label-as-badge pull-right">neutral</span>
+                {% elsif sentiment140_score1 == '4' %}
+                <span class="label label-success label-as-badge pull-right">positive</span>
+                {% endif %}
+                Sentiment (Sentiment140) score
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The sentiment score according to sentiwordnet (between -1 and 1, where -1 is negative, 0 is neutral, and +1 is positive)">
+                <cml:hidden name="result_sentiwordnet_score1" value="0" />
+                <span class="badge">{{sentiwordnet_score1}}</span>
+                Sentiment (Sentiwordnet) score
+              </a>
+            </div>
+          </div>
+        </div>       
+      </div>
+    </div>
+    <div class="col-md-5"> 
+      <div id="tweet2-box" class="panel panel-default">
+        <div class="panel-heading text-center"><h2>Please select one of the options above</h2></div>
+        <div class="panel-body">
+          <div class="panel-element text-center">
+            <div class="well well-lg tweet"><span>{{text2}}</span></div>
+          </div>
+          <div class="panel-element">
+            <div class="list-group">
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The date the tweet was posted.">
+                <cml:hidden name="result_tweet_created_at2" value="0" />
+                <span class="badge">{{tweet_created_at2  | date: "%h %d, %Y" }}</span>
+                Created
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The number of favorites (likes) of the tweet.">
+                <cml:hidden name="result_tweet_favorite_count2" value="0" />
+                <span class="badge">{{tweet_favorite_count2}}</span>
+                Favourites
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The number of retweets (reposts) for the tweet.">
+                <cml:hidden name="result_tweet_retweets_count2" value="0" />
+                <span class="badge">{{tweet_retweets_count2}}</span>
+                Retweets
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The number of official Wikipedia.org entities.">
+                <cml:hidden name="result_tweet_wiki_entities_count2" value="0" />
+                <span class="badge">{{tweet_wiki_entities_count2}}</span>
+                Wikipedia entities
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The number of numerical occurences (i.e. 1,000, thousand etc.)">
+                <cml:hidden name="result_tweet_numerical_count2" value="0" />
+                <span class="badge">{{tweet_numerical_count2}}</span>
+                Numerical occurences
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The number of uppercase characters in the tweet">
+                <cml:hidden name="result_tweet_uppercase_count2" value="0" />
+                <span class="badge">{{tweet_uppercase_count2}}</span>
+                Uppercase characters
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The number of users mentioned in the tweet (i.e. @nytimes, @johnsmith)">
+                <cml:hidden name="result_tweet_user_mentions_count2" value="0" />
+                <span class="badge">{{tweet_user_mentions_count2}}</span>
+                Twitter users mentioned
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The number of symbols/punctuations in the text (i.e. &quot;,^,%)">
+                <cml:hidden name="result_tweet_punctuation_count2" value="0" />
+                <span class="badge">{{tweet_punctuation_count2}}</span>
+                Symbol occurences
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The number of proper nouns in the tags (referring to people, organization etc.)">
+                <cml:hidden name="result_tweet_nouns_count2" value="0" />
+                <span class="badge">{{tweet_nouns_count2}}</span>
+                Nouns in tweet
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The number of hyperlinks in the tweet (often referred to an external website)">
+                <cml:hidden name="result_tweet_url_count2" value="0" />
+                <span class="badge">{{tweet_url_count2}}</span>
+                URL's in tweet
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The number of hashtags (keywords) in the tweet.">
+                <cml:hidden name="result_tweet_hashtag_count2" value="0" />
+                <span class="badge">{{tweet_hashtag_count2}}</span>
+                Hashtags in tweet
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The number of words the tweet consists of.">
+                <cml:hidden name="result_tweet_word_count2" value="0" />
+                <span class="badge">{{tweet_word_count2}}</span>
+                Words in the tweet
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="Is one of the URL's in the tweet listed on Newser.com (a news summary site)?">
+                <cml:hidden name="result_url_in_newser2" value="0" />
+                <span class="pull-right">
+                  {% if url_in_newser2 == '1' %}
+                  <i class="fa fa-check green-text"></i>
+                  {% else %}
+                  <i class="fa fa-close red-text"></i>
+                  {% endif %}
+                </span>
+                URL listed on Newser.com
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="Is one of the URL's in the tweet listed in the Newser.com top 100 (www.newser.com/topsites/aspx)?">
+                <cml:hidden name="result_url_in_newser100_2" value="0" />
+                <span class="pull-right">
+                  {% if url_in_newser100_2 == '1' %}
+                  <i class="fa fa-check green-text"></i>
+                  {% else %}
+                  <i class="fa fa-close red-text"></i>
+                  {% endif %}
+                </span>
+                URL listed in top 100 on Newser.com
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="What is the sentiment (using the sentiment140 index) of the tweet (negative, neutral, positive)?">
+                <cml:hidden name="result_sentiment140_score2" value="0" />
+                {% if sentiment140_score2 == '0' %}
+                <span class="label label-danger label-as-badge pull-right">negative</span>
+                {% elsif sentiment140_score2 == '2' %}
+                <span class="label label-as-badge pull-right">neutral</span>
+                {% elsif sentiment140_score2 == '4' %}
+                <span class="label label-success label-as-badge pull-right">positive</span>
+                {% endif %}
+                Sentiment (Sentiment140) score
+              </a>
+              <a target="_blank" href="#" class="list-group-item" data-toggle="tooltip" data-placement="right" title="The sentiment score according to sentiwordnet (between -1 and 1, where -1 is negative, 0 is neutral, and +1 is positive)">
+                <cml:hidden name="result_sentiwordnet_score2" value="0" />
+                <span class="badge">{{sentiwordnet_score2}}</span>
+                Sentiment (Sentiwordnet) score
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-10"><hr /></div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-2 text-center">
+      <cml:textarea label="Comments (optional)" name="comments" />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10"><hr /></div>
+  </div>
+</div>

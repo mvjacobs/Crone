@@ -1,0 +1,76 @@
+@import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css");
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css");
+
+#twitter-container {
+  -moz-border-radius:12px;
+  -khtml-border-radius: 12px;
+  -webkit-border-radius: 12px;
+  border-radius:12px;
+  border:6px solid #f5f5f5;
+  padding:10px;
+  font-size:14px;
+  font-family:'Lucida Grande',sans-serif;
+  color:#333333;
+}
+
+#user-container {
+  -moz-border-radius:12px;
+  -khtml-border-radius: 12px;
+  -webkit-border-radius: 12px;
+  border-radius:12px;
+  border: 6px solid #f5f5f5;
+  padding:10px;
+  font-size:14px;
+  font-family:'Lucida Grande',sans-serif;
+  background-color: #f5f5f5;
+  color:#333333;
+}
+
+.whole-width {
+  width: 100%;
+}
+
+span {
+  display: block;
+  line-height: 2;
+  font-size:14px;
+}
+
+#question1 {
+  display: none;
+}
+
+.twitter-date{
+  font-size:12px;
+  color:#999999;
+}
+
+.author a:hover{
+  text-decoration:none;
+}
+
+.red-text {
+  color: #e74c3c;
+}
+
+.green-text {
+  color: #2ecc71;
+}
+
+.choice {
+  font-size: 20px;
+}
+
+.panel-element {
+  display: block;
+  padding: 5px 0px;
+}
+
+.tweet {
+  font-size: 12px;
+  /*font-weight: bold;*/
+}
+
+.tags {
+  font-size: 11px;
+}
