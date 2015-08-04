@@ -6,8 +6,8 @@ library(ggplot2)
 library(devtools)
 library(easyGgplot2)
 
-article_creds <- read.csv("D:/Dropbox/School/Thesis/Final/results/Distributions/dist_articles_credibles.csv")
-article_rest <- read.csv("D:/Dropbox/School/Thesis/Final/results/Distributions/dist_articles_non_credibles.csv")
+article_creds <- read.csv("./Distributions/dist_articles_credibles.csv")
+article_rest <- read.csv("./Distributions/dist_articles_non_credibles.csv")
 
 x1 = article_creds$comments_count
 x2 = article_creds$keywords_count

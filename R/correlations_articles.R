@@ -1,4 +1,4 @@
-articles_features <- read.csv("D:/Dropbox/School/Thesis/Final/results/Correlation/articles_features.csv")
+articles_features <- read.csv("./Correlation/articles_features.csv")
 
 y1 = articles_features$credible_count
 

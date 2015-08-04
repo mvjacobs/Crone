@@ -7,8 +7,8 @@ library(devtools)
 library(easyGgplot2)
 library(gridExtra)
 
-tweet_other_creds <- read.csv("D:/Dropbox/School/Thesis/Final/results/Distributions/dist_tweet_other_credibles.csv")
-tweet_other_rest <- read.csv("D:/Dropbox/School/Thesis/Final/results/Distributions/dist_tweet_other_non_credibles.csv")
+tweet_other_creds <- read.csv("./Distributions/dist_tweet_other_credibles.csv")
+tweet_other_rest <- read.csv("./Distributions/dist_tweet_other_non_credibles.csv")
 
 x1 = tweet_other_creds$sentiment140_score
 x2 = tweet_other_creds$sentiwordnet_score

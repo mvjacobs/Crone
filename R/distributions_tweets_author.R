@@ -6,8 +6,8 @@ library(ggplot2)
 library(devtools)
 library(easyGgplot2)
 
-tweet_author_creds <- read.csv("D:/Dropbox/School/Thesis/Final/results/Distributions/dist_tweet_author_credibles.csv")
-tweet_author_rest <- read.csv("D:/Dropbox/School/Thesis/Final/results/Distributions/dist_tweet_author_non_credibles.csv")
+tweet_author_creds <- read.csv("./Distributions/dist_tweet_author_credibles.csv")
+tweet_author_rest <- read.csv("./Distributions/dist_tweet_author_non_credibles.csv")
 
 x1 = tweet_author_creds$has_user_avatar
 x2 = tweet_author_creds$has_user_background

@@ -1,4 +1,4 @@
-tweet_author_features <- read.csv("D:/Dropbox/School/Thesis/Final/results/Correlation/tweet_author_features.csv")
+tweet_author_features <- read.csv("./Correlation/tweet_author_features.csv")
 
 y1 = tweet_author_features$credible_count
 x1 = tweet_author_features$has_user_avatar
